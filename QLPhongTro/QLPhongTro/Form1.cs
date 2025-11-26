@@ -51,5 +51,12 @@ namespace QLPhongTro
             formHoaDon.MdiParent = this;
             formHoaDon.Show();
         }
+
+        private void quảnLíPhòngTrọToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RoomForm roomForm = new RoomForm();
+            roomForm.MdiParent = this;
+            roomForm.Show();
+        }
     }
 }

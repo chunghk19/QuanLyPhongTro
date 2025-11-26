@@ -16,7 +16,7 @@ namespace QLPhongTro
 {
     public partial class FormDangNhap : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
         public FormDangNhap()
         {
             InitializeComponent();

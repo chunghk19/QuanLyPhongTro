@@ -15,7 +15,7 @@ namespace QLPhongTro
 {
     public partial class FormRegister : Form
     {
-        string str = "Server=localhost;Port=3306;Database=room_management;Uid=root;Pwd=";
+        string str = "Server=localhost;Port=3306;Database=room_management;Uid=root;Pwd=157359";
         public FormRegister()
         {
             InitializeComponent();
