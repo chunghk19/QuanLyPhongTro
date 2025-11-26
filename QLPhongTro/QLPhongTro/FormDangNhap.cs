@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X500;
 
 namespace QLPhongTro
 {
@@ -52,26 +53,25 @@ namespace QLPhongTro
                 using (MySqlConnection conn = new MySqlConnection(str))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM `User` WHERE username=@user";
+                    string query = "SELECT * FROM `User` WHERE username=@user LIMIT 1";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@user", txtTenDangNhap.Text);
 
                     using (MySqlDataReader rdr = cmd.ExecuteReader())
                     {
-                        if (rdr.Read())
+                        if (!rdr.Read())
                         {
-                            string storedHash = rdr["password_hash"].ToString();
-                            if (VerifyPassword(txtMatKhau.Text, storedHash))
-                            {
-                                MessageBox.Show("Đăng nhập thành công");
-                                // mở form chính
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
-                            }
+                            MessageBox.Show("Tài khoản không tồn tại!");
+                            return;
                         }
+                        string storedHash = rdr["password_hash"].ToString();
+                        if (!VerifyPassword(txtMatKhau.Text, storedHash))
+                        {
+                            MessageBox.Show("Sai mật khẩu!");
+                            return;
+                        }
+                        MessageBox.Show("Đăng nhập thành công!");
+                        this.Hide();
                     }
                 }
             }
@@ -80,13 +80,18 @@ namespace QLPhongTro
                 MessageBox.Show("Lỗi đăng nhập: " + ex.Message);
             }
         }
-        
+
 
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FormRegister formRegister = new FormRegister();
             formRegister.ShowDialog();
             this.Hide();
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

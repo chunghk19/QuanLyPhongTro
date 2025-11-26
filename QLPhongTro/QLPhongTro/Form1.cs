@@ -35,7 +35,21 @@ namespace QLPhongTro
 
         private void quảnLýKháchThuêToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TenantForm tenantForm = new TenantForm();
+            tenantForm.MdiParent = this;
+            tenantForm.Show();
+        }
 
+        private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quảnLíHoáĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormHoaDon formHoaDon = new FormHoaDon();
+            formHoaDon.MdiParent = this;
+            formHoaDon.Show();
         }
     }
 }
