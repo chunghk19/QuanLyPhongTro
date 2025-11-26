@@ -123,6 +123,12 @@ namespace QLPhongTro
                 cmd.Parameters.AddRange(p);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Thêm mới khách hàng thành công");
+                txtCCCD.Clear();
+                txtDiaChi.Clear();
+                txtID.Clear();
+                txtSDT.Clear();
+                txtTenKH.Clear();
+
             }
             catch (Exception ex)
             {
@@ -173,7 +179,12 @@ namespace QLPhongTro
                     conn.Close();
 
                     MessageBox.Show("Cập nhật thông tin khách hàng thành công");
-                    loadData();
+                        txtCCCD.Clear();
+                        txtDiaChi.Clear();
+                        txtID.Clear();
+                        txtSDT.Clear();
+                        txtTenKH.Clear();
+                        loadData();
                 }
                 catch (Exception ex)
                 {
