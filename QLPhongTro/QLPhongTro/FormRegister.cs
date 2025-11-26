@@ -23,14 +23,11 @@ namespace QLPhongTro
 
         public static string HashPassword(string password)
         {
-            // Tạo salt 16 byte
             byte[] salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-
-            // Dùng PBKDF2
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
             byte[] hash = pbkdf2.GetBytes(32);
 
@@ -48,7 +45,6 @@ namespace QLPhongTro
                 string passRe = txtNhapLai.Text;
                 string email = txtEmail.Text;
 
-                // Kiểm tra dữ liệu trống
                 if (username == "" || password == "" || email == "" || passRe == "")
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
@@ -62,7 +58,6 @@ namespace QLPhongTro
                 {
                     conn.Open();
                     var passHash = HashPassword(password);
-                    // Kiểm tra username đã tồn tại chưa
                     string checkQuery = "SELECT * FROM `User` WHERE username = @user";
                     MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
                     checkCmd.Parameters.AddWithValue("@user", username);
@@ -75,8 +70,6 @@ namespace QLPhongTro
                         return;
                     }
                     rdr.Close();
-
-                    // Thêm user mới
                     string insertQuery =
                         "INSERT INTO `User` (username, password_hash, email, role, is_active, created_at) " +
                         "VALUES (@user, @pass, @email, 'TENANT', '1', NOW())";
@@ -88,7 +81,7 @@ namespace QLPhongTro
 
                     insertCmd.ExecuteNonQuery();
                     MessageBox.Show("Đăng ký thành công!");
-                    // Chuyển về form đăng nhập
+
                     FormDangNhap form = new FormDangNhap();
                     form.ShowDialog();
                     this.Close();

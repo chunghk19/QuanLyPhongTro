@@ -126,3 +126,6 @@ C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.csproj.Cor
 C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.csproj.Up2Date
 C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.exe
 C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.pdb
+C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.TenantForm.resources
+C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormBaoCao.resources
+C:\Users\ChungLe\Downloads\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormHoaDon.resources
