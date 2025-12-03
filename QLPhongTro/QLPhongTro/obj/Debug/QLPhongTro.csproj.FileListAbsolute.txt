@@ -168,6 +168,7 @@ K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormDangNhap.resources
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormHoaDon.resources
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormRegister.resources
+K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.FormTaiKhoan.resources
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.Properties.Resources.resources
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.RoomForm.resources
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.TenantForm.resources

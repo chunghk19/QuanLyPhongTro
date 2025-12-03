@@ -31,10 +31,11 @@ namespace QLPhongTro
         {
             if (Authorization.Role == "TENANT")
             {
-                đăngKýKháchThuêMớiToolStripMenuItem.Visible = false;
-                quảnLíPhòngTrọToolStripMenuItem.Visible = false;
-                quảnLíHoáĐơnToolStripMenuItem.Visible = false;
                 thốngKêToolStripMenuItem.Visible = false;
+                đăngKýTàiKhoảnMớiToolStripMenuItem.Visible = false;
+                danhSáchTàiKhoảnToolStripMenuItem.Visible = false;
+                danhSáchKháchThuêToolStripMenuItem.Visible = false;
+                danhSáchPhòngTrọToolStripMenuItem.Visible = false;
             }
         }
         private void đăngKýKháchThuêMớiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,9 +44,7 @@ namespace QLPhongTro
 
         private void quảnLýKháchThuêToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TenantForm tenantForm = new TenantForm();
-            tenantForm.MdiParent = this;
-            tenantForm.Show();
+
         }
 
         private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,9 +61,7 @@ namespace QLPhongTro
 
         private void quảnLíPhòngTrọToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RoomForm roomForm = new RoomForm();
-            roomForm.MdiParent = this;
-            roomForm.Show();
+
         }
 
         private void đăngKýTàiKhoảnMớiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,7 +73,23 @@ namespace QLPhongTro
 
         private void danhSáchTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormTaiKhoan formTaiKhoan = new FormTaiKhoan();
+            formTaiKhoan.MdiParent = this;
+            formTaiKhoan.Show();
+        }
 
+        private void danhSáchKháchThuêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TenantForm tenantForm = new TenantForm();
+            tenantForm.MdiParent = this;
+            tenantForm.Show();
+        }
+
+        private void danhSáchPhòngTrọToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RoomForm roomForm = new RoomForm();
+            roomForm.MdiParent = this;
+            roomForm.Show();
         }
     }
 }
