@@ -23,14 +23,22 @@ namespace QLPhongTro
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("Xin chào " + Authorization.Username + " (" + Authorization.Role + ")");
 
+            ApplyRolePermission();
         }
-
+        private void ApplyRolePermission()
+        {
+            if (Authorization.Role == "TENANT")
+            {
+                đăngKýKháchThuêMớiToolStripMenuItem.Visible = false;
+                quảnLíPhòngTrọToolStripMenuItem.Visible = false;
+                quảnLíHoáĐơnToolStripMenuItem.Visible = false;
+                thốngKêToolStripMenuItem.Visible = false;
+            }
+        }
         private void đăngKýKháchThuêMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormRegister formRegister = new FormRegister();
-            formRegister.MdiParent = this;
-            formRegister.Show();
         }
 
         private void quảnLýKháchThuêToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,6 +65,18 @@ namespace QLPhongTro
             RoomForm roomForm = new RoomForm();
             roomForm.MdiParent = this;
             roomForm.Show();
+        }
+
+        private void đăngKýTàiKhoảnMớiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRegister formRegister = new FormRegister();
+            formRegister.MdiParent = this;
+            formRegister.Show();
+        }
+
+        private void danhSáchTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

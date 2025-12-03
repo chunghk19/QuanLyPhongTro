@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|k:\\d\u1EF1 \u00E1n qlphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\authorization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\authorization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
+              "ToolTip": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs [Design]*",
+              "RelativeToolTip": "QLPhongTro\\Form1.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T12:01:24.471Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
+              "ToolTip": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs*",
+              "RelativeToolTip": "QLPhongTro\\Form1.cs*",
+              "ViewState": "AgIAABIAAAAAAAAAAAAIwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:58:50.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormDangNhap.cs [Design]",
+              "DocumentMoniker": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormDangNhap.cs",
+              "ToolTip": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs [Design]",
+              "RelativeToolTip": "QLPhongTro\\FormDangNhap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:47:49.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Authorization.cs",
+              "DocumentMoniker": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Authorization.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\Authorization.cs",
+              "ToolTip": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Authorization.cs",
+              "RelativeToolTip": "QLPhongTro\\Authorization.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:47:03.561Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormDangNhap.cs",
+              "DocumentMoniker": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormDangNhap.cs",
+              "ToolTip": "K:\\D\u1EF1 \u00E1n qlPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "RelativeToolTip": "QLPhongTro\\FormDangNhap.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAADwv0UAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:39:15.265Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

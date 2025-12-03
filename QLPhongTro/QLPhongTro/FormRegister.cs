@@ -15,7 +15,7 @@ namespace QLPhongTro
 {
     public partial class FormRegister : Form
     {
-        string str = "Server=localhost;Port=3306;Database=room_management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
         public FormRegister()
         {
             InitializeComponent();
@@ -82,9 +82,6 @@ namespace QLPhongTro
                     insertCmd.ExecuteNonQuery();
                     MessageBox.Show("Đăng ký thành công!");
 
-                    FormDangNhap form = new FormDangNhap();
-                    form.ShowDialog();
-                    this.Close();
                 }
             }
 

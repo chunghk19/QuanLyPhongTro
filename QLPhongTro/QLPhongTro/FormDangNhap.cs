@@ -64,6 +64,10 @@ namespace QLPhongTro
                             MessageBox.Show("Tài khoản không tồn tại!");
                             return;
                         }
+                        Authorization.Id = rdr.GetInt32("id");
+                        Authorization.Role = rdr.GetString("role");
+                        Authorization.Username = rdr.GetString("username");
+                        Authorization.IsActive = rdr.GetBoolean("is_active");
                         string storedHash = rdr["password_hash"].ToString();
                         if (!VerifyPassword(txtMatKhau.Text, storedHash))
                         {
