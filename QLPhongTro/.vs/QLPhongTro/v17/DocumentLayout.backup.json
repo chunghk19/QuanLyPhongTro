@@ -1,0 +1,188 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\tenantform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\tenantform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\roomform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\roomform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formtaikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formtaikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\formbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\quanlyphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormHoaDon.cs [Design]",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormHoaDon.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormHoaDon.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormHoaDon.cs [Design]",
+              "RelativeToolTip": "QLPhongTro\\FormHoaDon.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:40:03.152Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TenantForm.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\TenantForm.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\TenantForm.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\TenantForm.cs",
+              "RelativeToolTip": "QLPhongTro\\TenantForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:49.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoomForm.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\RoomForm.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\RoomForm.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\RoomForm.cs",
+              "RelativeToolTip": "QLPhongTro\\RoomForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:45.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormTaiKhoan.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormTaiKhoan.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormTaiKhoan.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormTaiKhoan.cs",
+              "RelativeToolTip": "QLPhongTro\\FormTaiKhoan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:38.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormRegister.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormRegister.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
+              "RelativeToolTip": "QLPhongTro\\FormRegister.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:33.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormHoaDon.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormHoaDon.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormHoaDon.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormHoaDon.cs",
+              "RelativeToolTip": "QLPhongTro\\FormHoaDon.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAAAUwL4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:23.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormDangNhap.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormDangNhap.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "RelativeToolTip": "QLPhongTro\\FormDangNhap.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:16.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormBaoCao.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormBaoCao.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\FormBaoCao.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormBaoCao.cs",
+              "RelativeToolTip": "QLPhongTro\\FormBaoCao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:12.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "RelativeToolTip": "QLPhongTro\\Form1.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:30:00.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
+              "ToolTip": "D:\\QuanLyPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs [Design]",
+              "RelativeToolTip": "QLPhongTro\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T00:29:34.122Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
