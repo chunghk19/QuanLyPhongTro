@@ -43,44 +43,49 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 79);
+            this.label1.Location = new System.Drawing.Point(177, 97);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(98, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên đăng nhập";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(133, 108);
+            this.label2.Location = new System.Drawing.Point(177, 133);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mật khẩu";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(133, 148);
+            this.label3.Location = new System.Drawing.Point(177, 182);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.Size = new System.Drawing.Size(114, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Nhập lại mật khẩu";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(133, 187);
+            this.label4.Location = new System.Drawing.Point(177, 230);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.Size = new System.Drawing.Size(41, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Email";
             // 
             // btnDangKy
             // 
-            this.btnDangKy.Location = new System.Drawing.Point(199, 255);
+            this.btnDangKy.Location = new System.Drawing.Point(265, 314);
+            this.btnDangKy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDangKy.Name = "btnDangKy";
-            this.btnDangKy.Size = new System.Drawing.Size(75, 23);
+            this.btnDangKy.Size = new System.Drawing.Size(100, 28);
             this.btnDangKy.TabIndex = 1;
             this.btnDangKy.Text = "Đăng ký";
             this.btnDangKy.UseVisualStyleBackColor = true;
@@ -88,47 +93,53 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(419, 255);
+            this.btnBack.Location = new System.Drawing.Point(559, 314);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(100, 28);
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "Thoát";
             this.btnBack.UseVisualStyleBackColor = true;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(256, 72);
+            this.txtUserName.Location = new System.Drawing.Point(341, 89);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(293, 20);
+            this.txtUserName.Size = new System.Drawing.Size(389, 22);
             this.txtUserName.TabIndex = 3;
             // 
             // txtPassWord
             // 
-            this.txtPassWord.Location = new System.Drawing.Point(256, 101);
+            this.txtPassWord.Location = new System.Drawing.Point(341, 124);
+            this.txtPassWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassWord.Name = "txtPassWord";
             this.txtPassWord.PasswordChar = '*';
-            this.txtPassWord.Size = new System.Drawing.Size(293, 20);
+            this.txtPassWord.Size = new System.Drawing.Size(389, 22);
             this.txtPassWord.TabIndex = 3;
             // 
             // txtNhapLai
             // 
-            this.txtNhapLai.Location = new System.Drawing.Point(256, 141);
+            this.txtNhapLai.Location = new System.Drawing.Point(341, 174);
+            this.txtNhapLai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNhapLai.Name = "txtNhapLai";
-            this.txtNhapLai.Size = new System.Drawing.Size(293, 20);
+            this.txtNhapLai.PasswordChar = '*';
+            this.txtNhapLai.Size = new System.Drawing.Size(389, 22);
             this.txtNhapLai.TabIndex = 3;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(256, 180);
+            this.txtEmail.Location = new System.Drawing.Point(341, 222);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(293, 20);
+            this.txtEmail.Size = new System.Drawing.Size(389, 22);
             this.txtEmail.TabIndex = 3;
             // 
             // FormRegister
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtNhapLai);
             this.Controls.Add(this.txtPassWord);
@@ -139,6 +150,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormRegister";
             this.Text = "FormRegister";
             this.ResumeLayout(false);

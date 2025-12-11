@@ -87,6 +87,7 @@ namespace QLPhongTro
             MessageBox.Show("Xin chào " + Authorization.Username + " (" + Authorization.Role + ")");
 
             ApplyRolePermission();
+            
         }
         private void ApplyRolePermission()
         {
@@ -151,6 +152,21 @@ namespace QLPhongTro
             RoomForm roomForm = new RoomForm();
             roomForm.MdiParent = this;
             roomForm.Show();
+        }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            TTDangNhap tTDangNhap = new TTDangNhap(Authorization.Username,Authorization.email,Authorization.Role);
+            tTDangNhap.MdiParent = this;
+            tTDangNhap.Show();
+        }
+
+        private void thôngTinPhồngTrọToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TTPhongTro tTPhongTro = new TTPhongTro(Authorization.Username);
+            tTPhongTro.MdiParent = this;
+            tTPhongTro.Show();
         }
     }
 }

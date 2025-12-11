@@ -68,6 +68,7 @@ namespace QLPhongTro
                         Authorization.Role = rdr.GetString("role");
                         Authorization.Username = rdr.GetString("username");
                         Authorization.IsActive = rdr.GetBoolean("is_active");
+                        Authorization.email = rdr.GetString("email");
                         string storedHash = rdr["password_hash"].ToString();
                         if (!VerifyPassword(txtMatKhau.Text, storedHash))
                         {

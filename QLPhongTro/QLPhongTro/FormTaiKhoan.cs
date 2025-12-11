@@ -43,7 +43,6 @@ namespace QLPhongTro
 
         private void FormTaiKhoan_Load(object sender, EventArgs e)
         {
-
         }
         public static string HashPassword(string password)
         {
