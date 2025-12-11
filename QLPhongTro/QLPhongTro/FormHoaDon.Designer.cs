@@ -47,6 +47,8 @@
             this.txtGiaDien = new System.Windows.Forms.TextBox();
             this.txtGiaNuoc = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnTinhToan = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoaDon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,11 +210,33 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "Số nước mới";
             // 
+            // btnTinhToan
+            // 
+            this.btnTinhToan.Location = new System.Drawing.Point(651, 357);
+            this.btnTinhToan.Name = "btnTinhToan";
+            this.btnTinhToan.Size = new System.Drawing.Size(196, 48);
+            this.btnTinhToan.TabIndex = 21;
+            this.btnTinhToan.Text = "Tính Toán";
+            this.btnTinhToan.UseVisualStyleBackColor = true;
+            this.btnTinhToan.Click += new System.EventHandler(this.btnTinhToan_Click);
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(937, 355);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(163, 50);
+            this.btnExcel.TabIndex = 22;
+            this.btnExcel.Text = "Xuất Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // FormHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2134, 1435);
+            this.Controls.Add(this.btnExcel);
+            this.Controls.Add(this.btnTinhToan);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtGiaNuoc);
             this.Controls.Add(this.txtGiaDien);
@@ -262,5 +286,7 @@
         private System.Windows.Forms.TextBox txtGiaDien;
         private System.Windows.Forms.TextBox txtGiaNuoc;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnTinhToan;
+        private System.Windows.Forms.Button btnExcel;
     }
 }
