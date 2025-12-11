@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\",
+  "WorkspaceRootPath": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|d:\\qlphongtro\\quanlyphongtro\\qlphongtro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{04EE19B0-A48B-4157-9235-6050DC1BD5D5}|QLPhongTro\\QLPhongTro.csproj|solutionrelative:qlphongtro\\formdangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -30,21 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "DocumentMoniker": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
               "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
-              "ToolTip": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "ToolTip": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
               "RelativeToolTip": "QLPhongTro\\Form1.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAiwC0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwC0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T15:29:23.71Z",
               "EditorCaption": ""
@@ -53,21 +49,20 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
+              "DocumentMoniker": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs",
               "RelativeDocumentMoniker": "QLPhongTro\\Form1.cs",
               "ToolTip": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs [Design]",
-              "RelativeToolTip": "QLPhongTro\\Form1.cs [Design]",
+              "RelativeToolTip": "..\\..\\..\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T15:20:04.293Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-24T15:20:04.293Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FormRegister.cs",
-              "DocumentMoniker": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
+              "DocumentMoniker": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
               "RelativeDocumentMoniker": "QLPhongTro\\FormRegister.cs",
-              "ToolTip": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
+              "ToolTip": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormRegister.cs",
               "RelativeToolTip": "QLPhongTro\\FormRegister.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAuwEYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -77,9 +72,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "FormDangNhap.cs",
-              "DocumentMoniker": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "DocumentMoniker": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
               "RelativeDocumentMoniker": "QLPhongTro\\FormDangNhap.cs",
-              "ToolTip": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "ToolTip": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
               "RelativeToolTip": "QLPhongTro\\FormDangNhap.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAowE8AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -89,7 +84,7 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "FormDangNhap.cs [Design]",
-              "DocumentMoniker": "D:\\QLBH\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
+              "DocumentMoniker": "D:\\QLPhongTro\\QuanLyPhongTro\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs",
               "RelativeDocumentMoniker": "QLPhongTro\\FormDangNhap.cs",
               "ToolTip": "D:\\H\u1ECDc\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs [Design]",
               "RelativeToolTip": "..\\..\\..\\H\u1ECDc\\QLPhongTro\\QLPhongTro\\FormDangNhap.cs [Design]",
