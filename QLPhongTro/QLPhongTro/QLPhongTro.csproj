@@ -96,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="DanhSachHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhSachHD.Designer.cs">
+      <DependentUpon>DanhSachHD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,15 @@
     <Compile Include="TenantForm.Designer.cs">
       <DependentUpon>TenantForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThemMoiHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemMoiHD.Designer.cs">
+      <DependentUpon>ThemMoiHD.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DanhSachHD.resx">
+      <DependentUpon>DanhSachHD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TenantForm.resx">
       <DependentUpon>TenantForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemMoiHD.resx">
+      <DependentUpon>ThemMoiHD.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

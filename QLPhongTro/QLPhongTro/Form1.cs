@@ -17,7 +17,7 @@ namespace QLPhongTro
 {
     public partial class Form1 : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         public Form1()
         {
             InitializeComponent();
@@ -151,6 +151,20 @@ namespace QLPhongTro
             RoomForm roomForm = new RoomForm();
             roomForm.MdiParent = this;
             roomForm.Show();
+        }
+
+        private void thêmMớiHợpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThemMoiHD themMoiHD = new ThemMoiHD();
+            themMoiHD.MdiParent = this;
+            themMoiHD.Show();
+        }
+
+        private void danhSáchHợpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgDSHD danhSachHD = new dgDSHD();
+            danhSachHD.MdiParent = this;
+            danhSachHD.Show();
         }
     }
 }

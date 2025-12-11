@@ -14,7 +14,7 @@ namespace QLPhongTro
 {
     public partial class FormTaiKhoan : Form
     {
-        string conStr = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string conStr = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         public FormTaiKhoan()
         {
             InitializeComponent();
