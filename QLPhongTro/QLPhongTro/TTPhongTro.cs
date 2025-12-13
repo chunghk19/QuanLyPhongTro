@@ -27,6 +27,49 @@ namespace QLPhongTro
         {
 
         }
+        private void loadDichVu()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(str))
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT 
+                            s.service_name AS 'Tên dịch vụ',
+                            FORMAT(s.price, 0) AS 'Giá (VNĐ)'
+                        FROM User u
+                        JOIN Tenant t ON t.user_id = u.id
+                        JOIN Contract_Tenant ct ON ct.tenant_id = t.id
+                        JOIN Contract c ON c.id = ct.contract_id
+                        JOIN Room r ON r.id = c.room_id
+                        JOIN Room_Service rs ON rs.room_id = r.id
+                        JOIN Service s ON s.id = rs.service_id
+                        WHERE u.username = @user
+                          AND c.is_active = TRUE
+                          AND s.is_active = TRUE;
+                    ";
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    da.SelectCommand.Parameters.AddWithValue("@user", username);
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgvDichVu.DataSource = dt;
+
+                    // Tùy chọn giao diện (khuyên dùng)
+                    dgvDichVu.DataSource = dt;
+                    dgvDichVu.ReadOnly = true;
+                    dgvDichVu.AllowUserToAddRows = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load dịch vụ: " + ex.Message);
+            }
+        }
 
         private void TTPhongTro_Load(object sender, EventArgs e)
         {
@@ -40,7 +83,7 @@ namespace QLPhongTro
                         " JOIN Contract_Tenant ct ON ct.tenant_id = t.id" +
                         " JOIN Contract c ON c.id = ct.contract_id" +
                         " JOIN Room r ON r.id = c.room_id" +
-                        " WHERE u.username = ?  AND c.is_active = TRUE";
+                        " WHERE u.username = @user  AND c.is_active = TRUE";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@user", username);
 
@@ -58,7 +101,7 @@ namespace QLPhongTro
                         }
                     }
                 }
-
+                loadDichVu();
 
             }
             catch (Exception ex)

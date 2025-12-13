@@ -98,6 +98,8 @@ namespace QLPhongTro
                 danhSáchTàiKhoảnToolStripMenuItem.Visible = false;
                 danhSáchKháchThuêToolStripMenuItem.Visible = false;
                 danhSáchPhòngTrọToolStripMenuItem.Visible = false;
+                thêmMớiHợpĐồngToolStripMenuItem.Visible = false;
+                danhSáchHợpĐồngToolStripMenuItem.Visible = false;
             }
         }
         private void đăngKýKháchThuêMớiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,6 +169,20 @@ namespace QLPhongTro
             TTPhongTro tTPhongTro = new TTPhongTro(Authorization.Username);
             tTPhongTro.MdiParent = this;
             tTPhongTro.Show();
+        }
+
+        private void danhSáchHợpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgDSHD danhSachHD = new dgDSHD();
+            danhSachHD.MdiParent = this;
+            danhSachHD.Show();
+        }
+
+        private void thêmMớiHợpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThemMoiHD themMoiHD = new ThemMoiHD();
+            themMoiHD.MdiParent = this;
+            themMoiHD.Show();
         }
     }
 }

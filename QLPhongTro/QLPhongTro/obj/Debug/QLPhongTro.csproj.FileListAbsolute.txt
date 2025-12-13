@@ -197,3 +197,5 @@ K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\bin\Debug\ExcelNumbe
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\bin\Debug\Microsoft.Bcl.HashCode.xml
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\bin\Debug\RBush.xml
 K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\bin\Debug\SixLabors.Fonts.xml
+K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.dgDSHD.resources
+K:\Dự án qlPhongTro\QuanLyPhongTro\QLPhongTro\QLPhongTro\obj\Debug\QLPhongTro.ThemMoiHD.resources

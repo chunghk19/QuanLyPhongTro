@@ -121,6 +121,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="DanhSachHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhSachHD.Designer.cs">
+      <DependentUpon>DanhSachHD.cs</DependentUpon>
+    </Compile>
     <Compile Include="DoiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,12 @@
     <Compile Include="TenantForm.Designer.cs">
       <DependentUpon>TenantForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThemMoiHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemMoiHD.Designer.cs">
+      <DependentUpon>ThemMoiHD.cs</DependentUpon>
+    </Compile>
     <Compile Include="TTDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +208,10 @@
     <Compile Include="TTPhongTro.Designer.cs">
       <DependentUpon>TTPhongTro.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserTenant.cs" />
+    <EmbeddedResource Include="DanhSachHD.resx">
+      <DependentUpon>DanhSachHD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DoiMatKhau.resx">
       <DependentUpon>DoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TenantForm.resx">
       <DependentUpon>TenantForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemMoiHD.resx">
+      <DependentUpon>ThemMoiHD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TTDangNhap.resx">
       <DependentUpon>TTDangNhap.cs</DependentUpon>
