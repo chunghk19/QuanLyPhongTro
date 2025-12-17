@@ -13,7 +13,7 @@ namespace QLPhongTro
 {
     public partial class dgDSHD : Form
     {
-        string str = "Server=localhost;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Database=Room_Management;Uid=root;Pwd=";
         public dgDSHD()
         {
             InitializeComponent();

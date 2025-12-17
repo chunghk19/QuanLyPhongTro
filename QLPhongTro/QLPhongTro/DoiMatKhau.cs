@@ -14,7 +14,7 @@ namespace QLPhongTro
 {
     public partial class DoiMatKhau : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         private string username;
         public DoiMatKhau(string username   )
         {

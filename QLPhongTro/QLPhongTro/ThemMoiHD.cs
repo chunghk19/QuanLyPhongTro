@@ -13,7 +13,7 @@ namespace QLPhongTro
 {
     public partial class ThemMoiHD : Form
     {
-        string str = "Server=localhost;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Database=Room_Management;Uid=root;Pwd=";
         private int selectedTenantId = -1;
         public ThemMoiHD()
         {
