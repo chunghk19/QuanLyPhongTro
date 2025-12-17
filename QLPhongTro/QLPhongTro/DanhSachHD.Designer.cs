@@ -36,13 +36,17 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnCapNhap = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rbConHieuLuc = new System.Windows.Forms.RadioButton();
+            this.rbHetHieuLuc = new System.Windows.Forms.RadioButton();
+            this.rbAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHD)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 62);
+            this.label1.Location = new System.Drawing.Point(49, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 20);
             this.label1.TabIndex = 0;
@@ -50,14 +54,14 @@
             // 
             // txtCCCD
             // 
-            this.txtCCCD.Location = new System.Drawing.Point(207, 55);
+            this.txtCCCD.Location = new System.Drawing.Point(209, 32);
             this.txtCCCD.Name = "txtCCCD";
             this.txtCCCD.Size = new System.Drawing.Size(341, 26);
             this.txtCCCD.TabIndex = 1;
             // 
             // btnSeach
             // 
-            this.btnSeach.Location = new System.Drawing.Point(585, 49);
+            this.btnSeach.Location = new System.Drawing.Point(587, 26);
             this.btnSeach.Name = "btnSeach";
             this.btnSeach.Size = new System.Drawing.Size(72, 33);
             this.btnSeach.TabIndex = 2;
@@ -68,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 109);
+            this.label2.Location = new System.Drawing.Point(46, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(157, 20);
             this.label2.TabIndex = 3;
@@ -112,12 +116,63 @@
             this.btnCapNhap.TabIndex = 7;
             this.btnCapNhap.Text = "Cập nhập";
             this.btnCapNhap.UseVisualStyleBackColor = true;
+            this.btnCapNhap.Click += new System.EventHandler(this.btnCapNhap_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(52, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 20);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Lọc: ";
+            // 
+            // rbConHieuLuc
+            // 
+            this.rbConHieuLuc.AutoSize = true;
+            this.rbConHieuLuc.Location = new System.Drawing.Point(209, 77);
+            this.rbConHieuLuc.Name = "rbConHieuLuc";
+            this.rbConHieuLuc.Size = new System.Drawing.Size(121, 24);
+            this.rbConHieuLuc.TabIndex = 9;
+            this.rbConHieuLuc.TabStop = true;
+            this.rbConHieuLuc.Text = "Còn hiệu lực";
+            this.rbConHieuLuc.UseVisualStyleBackColor = true;
+            this.rbConHieuLuc.CheckedChanged += new System.EventHandler(this.rbConHieuLuc_CheckedChanged);
+            // 
+            // rbHetHieuLuc
+            // 
+            this.rbHetHieuLuc.AutoSize = true;
+            this.rbHetHieuLuc.Location = new System.Drawing.Point(381, 77);
+            this.rbHetHieuLuc.Name = "rbHetHieuLuc";
+            this.rbHetHieuLuc.Size = new System.Drawing.Size(116, 24);
+            this.rbHetHieuLuc.TabIndex = 10;
+            this.rbHetHieuLuc.TabStop = true;
+            this.rbHetHieuLuc.Text = "Đã kết thúc";
+            this.rbHetHieuLuc.UseVisualStyleBackColor = true;
+            this.rbHetHieuLuc.CheckedChanged += new System.EventHandler(this.rbHetHieuLuc_CheckedChanged);
+            // 
+            // rbAll
+            // 
+            this.rbAll.AutoSize = true;
+            this.rbAll.Location = new System.Drawing.Point(543, 77);
+            this.rbAll.Name = "rbAll";
+            this.rbAll.Size = new System.Drawing.Size(78, 24);
+            this.rbAll.TabIndex = 11;
+            this.rbAll.TabStop = true;
+            this.rbAll.Text = "Tất cả";
+            this.rbAll.UseVisualStyleBackColor = true;
+            this.rbAll.CheckedChanged += new System.EventHandler(this.rbAll_CheckedChanged);
             // 
             // dgDSHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1157, 784);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.rbAll);
+            this.Controls.Add(this.rbHetHieuLuc);
+            this.Controls.Add(this.rbConHieuLuc);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCapNhap);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnAdd);
@@ -125,7 +180,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSeach);
             this.Controls.Add(this.txtCCCD);
-            this.Controls.Add(this.label1);
             this.Name = "dgDSHD";
             this.Text = "DanhSachHD";
             this.Load += new System.EventHandler(this.DanhSachHD_Load);
@@ -145,5 +199,9 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnCapNhap;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton rbConHieuLuc;
+        private System.Windows.Forms.RadioButton rbHetHieuLuc;
+        private System.Windows.Forms.RadioButton rbAll;
     }
 }

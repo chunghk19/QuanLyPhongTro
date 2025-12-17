@@ -24,6 +24,18 @@ namespace QLPhongTro
         {
 
         }
+        private void AddStatusColumn(DataTable dt)
+        {
+            if (!dt.Columns.Contains("Trạng thái"))
+                dt.Columns.Add("Trạng thái", typeof(string));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Trạng thái"] =
+                    Convert.ToBoolean(row["is_active"]) ? "Còn hiệu lực" : "Đã kết thúc";
+            }
+        }
+
         // =========================
         // Load tất cả hợp đồng
         // =========================
@@ -57,11 +69,7 @@ namespace QLPhongTro
                     da.Fill(dt);
 
                     // Thêm cột trạng thái hiển thị
-                    dt.Columns.Add("Trạng thái", typeof(string));
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        row["Trạng thái"] = Convert.ToBoolean(row["is_active"]) ? "Còn hiệu lực" : "Đã kết thúc";
-                    }
+                    AddStatusColumn(dt);
 
                     dgvDanhSachHD.DataSource = dt;
 
@@ -137,16 +145,9 @@ namespace QLPhongTro
                         // Tự động xóa chữ trong ô tìm kiếm
                         txtCCCD.Clear();
                         dgvDanhSachHD.DataSource = dt;
-
-                        dt.Columns.Add("status_text", typeof(string));
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            row["status_text"] = Convert.ToBoolean(row["is_active"]) ? "Còn hiệu lực" : "Đã kết thúc";
-                        }
-
-                        dgvDanhSachHD.Columns["contract_id"].Visible = false;
+                        AddStatusColumn(dt);
                         dgvDanhSachHD.Columns["is_active"].Visible = false;
-                        dgvDanhSachHD.Columns["status_text"].HeaderText = "Trạng thái";
+                        dgvDanhSachHD.Columns["contract_id"].Visible = false;
                     }
                 }
             }
@@ -176,9 +177,77 @@ namespace QLPhongTro
             }
 
             int contractId = Convert.ToInt32(dgvDanhSachHD.SelectedRows[0].Cells["contract_id"].Value);
-            ThemMoiHD themMoiHD = new ThemMoiHD();
-            themMoiHD.ShowDialog();
-            LoadContracts(); // reload danh sách sau khi sửa
+            SuaHD suaHD = new SuaHD(contractId);
+            suaHD.ShowDialog();
+            LoadContracts();
+
         }
+
+        private void btnCapNhap_Click(object sender, EventArgs e)
+        {
+            LoadContracts();
+        }
+        private void FilterByStatus(bool isActive)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(str))
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT 
+                            c.id AS contract_id,
+                            r.room_name,
+                            c.price,
+                            c.start_date,
+                            c.end_date,
+                            c.deposit,
+                            c.is_active,
+                            GROUP_CONCAT(t.full_name SEPARATOR ', ') AS tenants
+                        FROM Contract c
+                        INNER JOIN Room r ON c.room_id = r.id
+                        INNER JOIN Contract_Tenant ct ON c.id = ct.contract_id
+                        INNER JOIN Tenant t ON ct.tenant_id = t.id
+                        WHERE c.is_active = @status
+                        GROUP BY c.id
+                        ORDER BY c.id DESC";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@status", isActive);
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    AddStatusColumn(dt);
+
+                    dgvDanhSachHD.DataSource = dt;
+                    dgvDanhSachHD.Columns["is_active"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lọc hợp đồng: " + ex.Message);
+            }
+        }
+
+
+        private void rbConHieuLuc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbConHieuLuc.Checked)
+                FilterByStatus(true);
+        }
+
+        private void rbHetHieuLuc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbHetHieuLuc.Checked)
+                FilterByStatus(false);
+        }
+
+        private void rbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadContracts();
+        }
+
     }
 }

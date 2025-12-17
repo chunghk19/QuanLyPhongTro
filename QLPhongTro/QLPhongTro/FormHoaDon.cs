@@ -18,10 +18,6 @@ namespace QLPhongTro
     public partial class FormHoaDon : Form
     {
         string conStr = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
-<<<<<<< HEAD
-=======
-
->>>>>>> 7488c9686e6c26571b0e4b0696c0a5541001b3ac
         public FormHoaDon()
         {
 

@@ -191,6 +191,12 @@
     <Compile Include="RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuaHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaHD.Designer.cs">
+      <DependentUpon>SuaHD.cs</DependentUpon>
+    </Compile>
     <Compile Include="TenantForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </Compile>
     <EmbeddedResource Include="RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuaHD.resx">
+      <DependentUpon>SuaHD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TenantForm.resx">
       <DependentUpon>TenantForm.cs</DependentUpon>
