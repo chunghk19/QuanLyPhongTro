@@ -4,73 +4,73 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using QLPhongTro;
 using QuanLyPhongTro_1.Common;
 
 namespace QuanLyPhongTro_1
 {
     public partial class FormLogin : Form
     {
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
         public FormLogin()
         {
             InitializeComponent();
         }
+        public static bool VerifyPassword(string password, string storedHash)
+        {
+            var parts = storedHash.Split(':');
+            byte[] hash = Convert.FromBase64String(parts[0]);
+            byte[] salt = Convert.FromBase64String(parts[1]);
 
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256);
+            byte[] hashToCheck = pbkdf2.GetBytes(32);
+
+            return hashToCheck.SequenceEqual(hash);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = txtTaiKhoan.Text.Trim();
-            string password = txtMatKhau.Text;
-
-            if (username == "" || password == "")
+            try
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
-                return;
-            }
+                using (MySqlConnection conn = new MySqlConnection(str))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM `User` WHERE username=@user LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@user", txtMatKhau.Text);
 
-            using (MySqlConnection conn = DbHelper.GetConnection())
+                    using (MySqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (!rdr.Read())
+                        {
+                            MessageBox.Show("Tài khoản không tồn tại!");
+                            return;
+                        }
+                        Authorization1.Id = rdr.GetInt32("id");
+                        Authorization1.Role = rdr.GetString("role");
+                        Authorization1.Username = rdr.GetString("username");
+                        Authorization1.IsActive = rdr.GetBoolean("is_active");
+                        Authorization1.email = rdr.GetString("email");
+                        string storedHash = rdr["password_hash"].ToString();
+                        if (!VerifyPassword(txtMatKhau.Text, storedHash))
+                        {
+                            MessageBox.Show("Sai mật khẩu!");
+                            return;
+                        }
+                        MessageBox.Show("Đăng nhập thành công!");
+                        this.Hide();
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                conn.Open();
-
-                string sql = @"
-                    SELECT id, username, password_hash, role
-                    FROM User
-                    WHERE username = @u AND is_active = true
-        ";
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@u", username);
-
-                MySqlDataReader rd = cmd.ExecuteReader();
-
-                if (!rd.Read())
-                {
-                    MessageBox.Show("Tài khoản không tồn tại hoặc bị khóa!");
-                    return;
-                }
-
-                string hash = rd["password_hash"].ToString();
-
-                // ⚠️ TẠM THỜI so sánh plain-text (đồ án)
-                if (hash != password)
-                {
-                    MessageBox.Show("Sai mật khẩu!");
-                    return;
-                }
-
-                // Lưu session
-                AppSession.UserId = Convert.ToInt32(rd["id"]);
-                AppSession.Username = rd["username"].ToString();
-                AppSession.Role = rd["role"].ToString();
+                MessageBox.Show("Lỗi đăng nhập: " + ex.Message);
             }
-
-            // Mở Form Main
-            FormMDI mdi = new FormMDI();
-            mdi.Show();
-            this.Hide();
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)

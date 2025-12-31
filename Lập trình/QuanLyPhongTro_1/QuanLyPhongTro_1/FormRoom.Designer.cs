@@ -45,8 +45,9 @@
             label5 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             cbStatus = new ComboBox();
-            panel1 = new Panel();
             clService = new CheckedListBox();
+            panel1 = new Panel();
+            cbIsActive = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgRoomLists).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -55,18 +56,21 @@
             // dgRoomLists
             // 
             dgRoomLists.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgRoomLists.Location = new Point(3, 28);
+            dgRoomLists.Location = new Point(2, 17);
+            dgRoomLists.Margin = new Padding(2);
             dgRoomLists.Name = "dgRoomLists";
             dgRoomLists.RowHeadersWidth = 62;
-            dgRoomLists.Size = new Size(861, 418);
+            dgRoomLists.Size = new Size(603, 251);
             dgRoomLists.TabIndex = 0;
+            dgRoomLists.CellClick += dgRoomLists_CellClick;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Location = new Point(0, 0);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(156, 25);
+            label9.Size = new Size(103, 15);
             label9.TabIndex = 1;
             label9.Text = "Danh sách phòng:";
             // 
@@ -74,10 +78,10 @@
             // 
             label1.AutoSize = true;
             label1.Dock = DockStyle.Bottom;
-            label1.Location = new Point(12, 83);
-            label1.Margin = new Padding(12, 0, 3, 0);
+            label1.Location = new Point(8, 49);
+            label1.Margin = new Padding(8, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(104, 25);
+            label1.Size = new Size(73, 15);
             label1.TabIndex = 0;
             label1.Text = "Tên Phòng";
             // 
@@ -85,10 +89,10 @@
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(14, 137);
-            label2.Margin = new Padding(3, 0, 10, 0);
+            label2.Location = new Point(14, 81);
+            label2.Margin = new Padding(2, 0, 7, 0);
             label2.Name = "label2";
-            label2.Size = new Size(95, 25);
+            label2.Size = new Size(62, 15);
             label2.TabIndex = 1;
             label2.Text = "Giá phòng";
             // 
@@ -96,9 +100,10 @@
             // 
             label3.AutoSize = true;
             label3.Dock = DockStyle.Bottom;
-            label3.Location = new Point(499, 83);
+            label3.Location = new Point(349, 49);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(103, 25);
+            label3.Size = new Size(72, 15);
             label3.TabIndex = 2;
             label3.Text = "Diện tích";
             // 
@@ -106,9 +111,10 @@
             // 
             label4.AutoSize = true;
             label4.Dock = DockStyle.Bottom;
-            label4.Location = new Point(499, 137);
+            label4.Location = new Point(349, 81);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(103, 25);
+            label4.Size = new Size(72, 15);
             label4.TabIndex = 3;
             label4.Text = "Trạng thái";
             label4.Click += label4_Click;
@@ -116,56 +122,64 @@
             // txtRoomName
             // 
             txtRoomName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            txtRoomName.Location = new Point(122, 74);
+            txtRoomName.Location = new Point(85, 39);
+            txtRoomName.Margin = new Padding(2);
             txtRoomName.Name = "txtRoomName";
-            txtRoomName.Size = new Size(342, 31);
+            txtRoomName.Size = new Size(241, 23);
             txtRoomName.TabIndex = 4;
             // 
             // txtArea
             // 
             txtArea.Dock = DockStyle.Bottom;
-            txtArea.Location = new Point(608, 74);
+            txtArea.Location = new Point(425, 39);
+            txtArea.Margin = new Padding(2);
             txtArea.Name = "txtArea";
-            txtArea.Size = new Size(250, 31);
+            txtArea.Size = new Size(176, 23);
             txtArea.TabIndex = 5;
             // 
             // txtRoomRate
             // 
             txtRoomRate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            txtRoomRate.Location = new Point(122, 128);
+            txtRoomRate.Location = new Point(85, 71);
+            txtRoomRate.Margin = new Padding(2);
             txtRoomRate.Name = "txtRoomRate";
-            txtRoomRate.Size = new Size(342, 31);
+            txtRoomRate.Size = new Size(241, 23);
             txtRoomRate.TabIndex = 7;
             // 
             // btnAdd
             // 
             btnAdd.BackColor = Color.PowderBlue;
             btnAdd.Dock = DockStyle.Bottom;
-            btnAdd.Location = new Point(499, 179);
+            btnAdd.Location = new Point(349, 106);
+            btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(103, 34);
+            btnAdd.Size = new Size(72, 20);
             btnAdd.TabIndex = 8;
             btnAdd.Text = "Thêm";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.BackColor = Color.Gold;
             btnUpdate.Dock = DockStyle.Bottom;
-            btnUpdate.Location = new Point(499, 233);
+            btnUpdate.Location = new Point(349, 138);
+            btnUpdate.Margin = new Padding(2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(103, 34);
+            btnUpdate.Size = new Size(72, 20);
             btnUpdate.TabIndex = 9;
             btnUpdate.Text = "Sửa";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
             btnDelete.BackColor = Color.Salmon;
             btnDelete.Dock = DockStyle.Bottom;
-            btnDelete.Location = new Point(499, 291);
+            btnDelete.Location = new Point(349, 175);
+            btnDelete.Margin = new Padding(2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(103, 34);
+            btnDelete.Size = new Size(72, 20);
             btnDelete.TabIndex = 10;
             btnDelete.Text = "Xóa";
             btnDelete.UseVisualStyleBackColor = false;
@@ -176,32 +190,34 @@
             btnSearch.BackColor = Color.MediumBlue;
             btnSearch.Dock = DockStyle.Bottom;
             btnSearch.ForeColor = SystemColors.ButtonFace;
-            btnSearch.Location = new Point(3, 17);
-            btnSearch.Margin = new Padding(3, 3, 10, 3);
+            btnSearch.Location = new Point(2, 10);
+            btnSearch.Margin = new Padding(2, 2, 7, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(106, 34);
+            btnSearch.Size = new Size(74, 20);
             btnSearch.TabIndex = 11;
             btnSearch.Text = "Tìm kiếm";
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
             tableLayoutPanel1.SetColumnSpan(txtSearch, 3);
             txtSearch.Dock = DockStyle.Bottom;
-            txtSearch.Location = new Point(122, 20);
+            txtSearch.Location = new Point(85, 7);
+            txtSearch.Margin = new Padding(2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Nhập tên phòng cần tìm......";
-            txtSearch.Size = new Size(736, 31);
+            txtSearch.Size = new Size(516, 23);
             txtSearch.TabIndex = 12;
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoSize = true;
-            label5.Location = new Point(15, 191);
-            label5.Margin = new Padding(15, 0, 3, 0);
+            label5.Location = new Point(10, 113);
+            label5.Margin = new Padding(10, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(71, 25);
+            label5.Size = new Size(47, 15);
             label5.TabIndex = 14;
             label5.Text = "Dịch vụ";
             // 
@@ -227,7 +243,8 @@
             tableLayoutPanel1.Controls.Add(txtArea, 3, 1);
             tableLayoutPanel1.Controls.Add(label4, 2, 2);
             tableLayoutPanel1.Controls.Add(clService, 1, 3);
-            tableLayoutPanel1.Location = new Point(45, 31);
+            tableLayoutPanel1.Location = new Point(32, 19);
+            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 6;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
@@ -236,11 +253,11 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(861, 328);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
+            tableLayoutPanel1.Size = new Size(603, 197);
             tableLayoutPanel1.TabIndex = 15;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
@@ -248,46 +265,64 @@
             // 
             cbStatus.Dock = DockStyle.Bottom;
             cbStatus.FormattingEnabled = true;
-            cbStatus.Location = new Point(608, 126);
+            cbStatus.Items.AddRange(new object[] { "Trống", "Đang thuê", "Sửa" });
+            cbStatus.Location = new Point(425, 71);
+            cbStatus.Margin = new Padding(2);
             cbStatus.Name = "cbStatus";
-            cbStatus.Size = new Size(250, 33);
+            cbStatus.Size = new Size(176, 23);
             cbStatus.TabIndex = 16;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(dgRoomLists);
-            panel1.Location = new Point(45, 381);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(861, 449);
-            panel1.TabIndex = 16;
             // 
             // clService
             // 
             clService.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             clService.FormattingEnabled = true;
-            clService.Location = new Point(122, 181);
+            clService.Location = new Point(85, 119);
+            clService.Margin = new Padding(2);
             clService.Name = "clService";
             tableLayoutPanel1.SetRowSpan(clService, 3);
-            clService.Size = new Size(342, 144);
+            clService.Size = new Size(241, 76);
             clService.TabIndex = 17;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(dgRoomLists);
+            panel1.Location = new Point(32, 229);
+            panel1.Margin = new Padding(2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(603, 269);
+            panel1.TabIndex = 16;
+            // 
+            // cbIsActive
+            // 
+            cbIsActive.AutoSize = true;
+            cbIsActive.Location = new Point(653, 64);
+            cbIsActive.Name = "cbIsActive";
+            cbIsActive.Size = new Size(83, 19);
+            cbIsActive.TabIndex = 17;
+            cbIsActive.Text = "Hoạt động";
+            cbIsActive.UseVisualStyleBackColor = true;
             // 
             // FormRoom
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(950, 842);
+            ClientSize = new Size(780, 567);
+            Controls.Add(cbIsActive);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(2);
             Name = "FormRoom";
             Text = "FormRoom";
             Load += FormRoom_Load;
+            MouseDown += FormRoom_MouseDown;
             ((System.ComponentModel.ISupportInitialize)dgRoomLists).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -311,5 +346,6 @@
         private ComboBox cbStatus;
         private Panel panel1;
         private CheckedListBox clService;
+        private CheckBox cbIsActive;
     }
 }

@@ -59,23 +59,25 @@
             tableLayoutPanel1.Controls.Add(btnExit, 4, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 56.11111F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 43.88889F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 79F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 105F));
-            tableLayoutPanel1.Size = new Size(736, 450);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 63F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 84F));
+            tableLayoutPanel1.Size = new Size(589, 360);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // txtMatKhau
             // 
             tableLayoutPanel1.SetColumnSpan(txtMatKhau, 5);
             txtMatKhau.Dock = DockStyle.Fill;
-            txtMatKhau.Location = new Point(187, 224);
+            txtMatKhau.Location = new Point(148, 179);
+            txtMatKhau.Margin = new Padding(2);
             txtMatKhau.Name = "txtMatKhau";
-            txtMatKhau.Size = new Size(453, 31);
+            txtMatKhau.Size = new Size(360, 27);
             txtMatKhau.TabIndex = 4;
             txtMatKhau.UseSystemPasswordChar = true;
             // 
@@ -85,9 +87,10 @@
             tableLayoutPanel1.SetColumnSpan(label1, 8);
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(2, 0);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(730, 124);
+            label1.Size = new Size(585, 99);
             label1.TabIndex = 0;
             label1.Text = "ĐĂNG NHẬP HỆ THỐNG";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -97,9 +100,10 @@
             label2.AutoSize = true;
             tableLayoutPanel1.SetColumnSpan(label2, 2);
             label2.Dock = DockStyle.Fill;
-            label2.Location = new Point(3, 124);
+            label2.Location = new Point(2, 99);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(178, 97);
+            label2.Size = new Size(142, 78);
             label2.TabIndex = 1;
             label2.Text = "Tài khoản:";
             label2.TextAlign = ContentAlignment.TopRight;
@@ -109,9 +113,10 @@
             label3.AutoSize = true;
             tableLayoutPanel1.SetColumnSpan(label3, 2);
             label3.Dock = DockStyle.Fill;
-            label3.Location = new Point(3, 221);
+            label3.Location = new Point(2, 177);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(178, 79);
+            label3.Size = new Size(142, 63);
             label3.TabIndex = 2;
             label3.Text = "Mật khẩu:";
             label3.TextAlign = ContentAlignment.TopRight;
@@ -120,18 +125,20 @@
             // 
             tableLayoutPanel1.SetColumnSpan(txtTaiKhoan, 5);
             txtTaiKhoan.Dock = DockStyle.Fill;
-            txtTaiKhoan.Location = new Point(187, 127);
+            txtTaiKhoan.Location = new Point(148, 101);
+            txtTaiKhoan.Margin = new Padding(2);
             txtTaiKhoan.Name = "txtTaiKhoan";
-            txtTaiKhoan.Size = new Size(453, 31);
+            txtTaiKhoan.Size = new Size(360, 27);
             txtTaiKhoan.TabIndex = 3;
             // 
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.HotTrack;
             btnLogin.ForeColor = SystemColors.ButtonHighlight;
-            btnLogin.Location = new Point(187, 303);
+            btnLogin.Location = new Point(148, 242);
+            btnLogin.Margin = new Padding(2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(112, 34);
+            btnLogin.Size = new Size(90, 27);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = false;
@@ -141,9 +148,10 @@
             // 
             btnExit.BackColor = Color.Red;
             btnExit.ForeColor = SystemColors.ButtonFace;
-            btnExit.Location = new Point(325, 303);
+            btnExit.Location = new Point(257, 242);
+            btnExit.Margin = new Padding(2);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(111, 34);
+            btnExit.Size = new Size(89, 27);
             btnExit.TabIndex = 6;
             btnExit.Text = "Thoát";
             btnExit.UseVisualStyleBackColor = false;
@@ -151,10 +159,11 @@
             // 
             // FormLogin
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(736, 450);
+            ClientSize = new Size(589, 360);
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(2);
             Name = "FormLogin";
             Text = "FormLogin";
             tableLayoutPanel1.ResumeLayout(false);
