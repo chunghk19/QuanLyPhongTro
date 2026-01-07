@@ -21,6 +21,7 @@ namespace QuanLyPhongTro_1
             InitializeComponent();
             intoCbRoom();
             contractLoad();
+            this.Load += FormContract_Load;
         }
 
         public static string HashPassword(string password)
@@ -97,6 +98,16 @@ namespace QuanLyPhongTro_1
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
                     dgvlistViewContract.DataSource = dt;
+                    dgvlistViewContract.Columns["contract_id"].HeaderText = "Mã hợp đồng";
+                    dgvlistViewContract.Columns["room_name"].HeaderText = "Phòng";
+                    dgvlistViewContract.Columns["start_date"].HeaderText = "Ngày bắt đầu";
+                    dgvlistViewContract.Columns["end_date"].HeaderText = "Ngày kết thúc";
+                    dgvlistViewContract.Columns["contract_price"].HeaderText = "Giá hợp đồng";
+                    dgvlistViewContract.Columns["deposit"].HeaderText = "Tiền cọc";
+                    dgvlistViewContract.Columns["tenant_name"].HeaderText = "Tên người thuê";
+                    dgvlistViewContract.Columns["tenant_id_card"].HeaderText = "CCCD người thuê";
+                    dgvlistViewContract.Columns["is_primary_tenant"].HeaderText = "Người thuê chính";
+
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -224,7 +235,8 @@ namespace QuanLyPhongTro_1
 
         private void FormContract_Load(object sender, EventArgs e)
         {
-
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

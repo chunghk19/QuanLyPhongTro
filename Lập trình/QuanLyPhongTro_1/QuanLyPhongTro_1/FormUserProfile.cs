@@ -23,6 +23,8 @@ namespace QuanLyPhongTro_1
             txtEmail.Text = Authorization1.email;
             txtTenDangNhap.Text = Authorization1.Username;
             txtVaiTro.Text = Authorization1.Role;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

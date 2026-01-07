@@ -14,7 +14,7 @@ namespace QuanLyPhongTro_1
 
     public partial class FormTenant : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         public FormTenant()
         {
             InitializeComponent();
@@ -239,6 +239,13 @@ namespace QuanLyPhongTro_1
                     DataTable dt = new DataTable();
                     mySqlDataAdapter.Fill(dt);
                     dgTenants.DataSource = dt;
+                    dgTenants.Columns["id"].HeaderText = "Mã khách hàng";
+                    dgTenants.Columns["full_name"].HeaderText = "Họ và tên";
+                    dgTenants.Columns["phone"].HeaderText = "Số điện thoại";
+                    dgTenants.Columns["id_card"].HeaderText = "CCCD/CMND";
+                    dgTenants.Columns["address"].HeaderText = "Địa chỉ";
+                    dgTenants.Columns["is_active"].HeaderText = "Đang hoạt động";
+                    dgTenants.Columns["User_id"].Visible= false ;
                 }
                 catch (Exception ex)
                 {

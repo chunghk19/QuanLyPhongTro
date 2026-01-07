@@ -151,6 +151,15 @@ namespace QuanLyPhongTro_1
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
                     dgRoomLists.DataSource = dt;
+                    dgRoomLists.Columns["id"].HeaderText = "Mã phòng";
+                    dgRoomLists.Columns["room_name"].HeaderText = "Tên phòng";
+                    dgRoomLists.Columns["price"].HeaderText = "Giá phòng";
+                    dgRoomLists.Columns["area"].HeaderText = "Diện tích";
+                    dgRoomLists.Columns["status"].HeaderText = "Trạng thái";
+                    dgRoomLists.Columns["is_active"].HeaderText = "Đang hoạt động";
+                    dgRoomLists.Columns["tenant_name"].HeaderText = "Tên người thuê";
+                    dgRoomLists.Columns["id_card"].HeaderText = "CMND/CCCD";
+
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }

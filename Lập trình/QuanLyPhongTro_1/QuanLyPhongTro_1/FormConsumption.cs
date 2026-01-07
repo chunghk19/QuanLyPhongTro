@@ -15,6 +15,7 @@ namespace QuanLyPhongTro_1
         public FormConsumption()
         {
             InitializeComponent();
+            this.Load += FormConsumption_Load;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -30,6 +31,12 @@ namespace QuanLyPhongTro_1
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormConsumption_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

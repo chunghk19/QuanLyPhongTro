@@ -316,6 +316,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "FormConsumption";
             Text = "FormConsumption";
+            Load += FormConsumption_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);

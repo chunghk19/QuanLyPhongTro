@@ -13,7 +13,7 @@ namespace QuanLyPhongTro_1
 {
     public partial class FormService : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         public FormService()
         {
             InitializeComponent();
@@ -132,6 +132,10 @@ namespace QuanLyPhongTro_1
                     DataTable dt = new DataTable();
                     mySqlDataAdapter.Fill(dt);
                     dgvService.DataSource = dt;
+                    dgvService.Columns["id"].HeaderText = "Mã dịch vụ";
+                    dgvService.Columns["service_name"].HeaderText = "Tên dịch vụ";
+                    dgvService.Columns["price"].HeaderText = "Giá dịch vụ";
+                    dgvService.Columns["is_active"].HeaderText = "Đang hoạt động";
                 }
                 catch (Exception ex)
                 {
