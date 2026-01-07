@@ -7,7 +7,7 @@ namespace QuanLyPhongTro_1
 {
     public partial class FormMDI : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=";
         public FormMDI()
         {
             InitializeComponent();
