@@ -110,28 +110,28 @@
             // phòngToolStripMenuItem
             // 
             phòngToolStripMenuItem.Name = "phòngToolStripMenuItem";
-            phòngToolStripMenuItem.Size = new Size(180, 22);
+            phòngToolStripMenuItem.Size = new Size(134, 22);
             phòngToolStripMenuItem.Text = "Phòng";
             phòngToolStripMenuItem.Click += phòngToolStripMenuItem_Click;
             // 
             // kháchThuêToolStripMenuItem
             // 
             kháchThuêToolStripMenuItem.Name = "kháchThuêToolStripMenuItem";
-            kháchThuêToolStripMenuItem.Size = new Size(180, 22);
+            kháchThuêToolStripMenuItem.Size = new Size(134, 22);
             kháchThuêToolStripMenuItem.Text = "Khách thuê";
             kháchThuêToolStripMenuItem.Click += kháchThuêToolStripMenuItem_Click;
             // 
             // hợpĐồngToolStripMenuItem
             // 
             hợpĐồngToolStripMenuItem.Name = "hợpĐồngToolStripMenuItem";
-            hợpĐồngToolStripMenuItem.Size = new Size(180, 22);
+            hợpĐồngToolStripMenuItem.Size = new Size(134, 22);
             hợpĐồngToolStripMenuItem.Text = "Hợp đồng";
             hợpĐồngToolStripMenuItem.Click += hợpĐồngToolStripMenuItem_Click;
             // 
             // dịchVụToolStripMenuItem
             // 
             dịchVụToolStripMenuItem.Name = "dịchVụToolStripMenuItem";
-            dịchVụToolStripMenuItem.Size = new Size(180, 22);
+            dịchVụToolStripMenuItem.Size = new Size(134, 22);
             dịchVụToolStripMenuItem.Text = "Dịch vụ";
             dịchVụToolStripMenuItem.Click += dịchVụToolStripMenuItem_Click;
             // 
@@ -204,14 +204,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Silver;
+            BackColor = Color.White;
             ClientSize = new Size(741, 476);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.None;
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FormMDI";
             Text = "Quản Lý Phòng Trọ_Nhóm 1 Lớp UDPM1-K15";
             WindowState = FormWindowState.Maximized;

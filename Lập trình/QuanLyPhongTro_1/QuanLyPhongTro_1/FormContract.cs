@@ -222,5 +222,9 @@ namespace QuanLyPhongTro_1
             }
         }
 
+        private void FormContract_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
