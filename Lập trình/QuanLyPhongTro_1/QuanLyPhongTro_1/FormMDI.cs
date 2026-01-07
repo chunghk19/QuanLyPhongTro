@@ -18,9 +18,12 @@ namespace QuanLyPhongTro_1
 
         private void FormMDI_Load(object sender, EventArgs e)
         {
+            FormDashboard dash = new FormDashboard();
+            dash.MdiParent = this;
+            dash.Show();
             MessageBox.Show("Xin chào " + Authorization1.Username + " (" + Authorization1.Role + ")");
-
             ApplyRolePermission();
+
         }
 
         private void ApplyRolePermission()
@@ -226,6 +229,11 @@ namespace QuanLyPhongTro_1
             FormPayment fr = new FormPayment();
             fr.MdiParent = this;
             fr.Show();
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

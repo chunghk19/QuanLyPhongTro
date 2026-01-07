@@ -17,9 +17,128 @@ namespace QuanLyPhongTro_1
         public FormRoom()
         {
             InitializeComponent();
+            BuildRoomLayout();
             FillCheckedListBox(clService, "SELECT id, service_name FROM Service WHERE is_active = 1");
             loadData();
         }
+
+        private void BuildRoomLayout()
+        {
+            this.SuspendLayout();
+
+            // ===== FORM =====
+            this.Controls.Clear();
+            this.WindowState = FormWindowState.Maximized;
+            this.Font = new Font("Segoe UI", 10F);
+            this.AutoScaleMode = AutoScaleMode.None;
+            this.MinimumSize = new Size(1100, 650);
+
+            // ================== TABLE MAIN ==================
+            TableLayoutPanel main = new TableLayoutPanel();
+            main.Dock = DockStyle.Fill;
+            main.RowCount = 2;
+            main.ColumnCount = 1;
+            main.Padding = new Padding(15);
+
+            // ⭐ DETAIL LỚN HƠN – LIST NHỎ LẠI
+            main.RowStyles.Add(new RowStyle(SizeType.Percent, 55)); // DETAIL
+            main.RowStyles.Add(new RowStyle(SizeType.Percent, 45)); // LIST
+
+            // ================== GROUPBOX DETAIL ==================
+            GroupBox gbDetail = new GroupBox();
+            gbDetail.Text = "Thông tin phòng";
+            gbDetail.Dock = DockStyle.Fill;
+            gbDetail.Padding = new Padding(8);
+
+            // ===== DETAIL WRAP =====
+            TableLayoutPanel detailWrap = new TableLayoutPanel();
+            detailWrap.Dock = DockStyle.Fill;
+            detailWrap.RowCount = 2;
+            detailWrap.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            detailWrap.RowStyles.Add(new RowStyle(SizeType.Absolute, 48));
+
+            // ===== TABLE DETAIL =====
+            TableLayoutPanel tbl = new TableLayoutPanel();
+            tbl.Dock = DockStyle.Fill;
+            tbl.ColumnCount = 2;
+            tbl.RowCount = 5;
+
+            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
+            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+
+            tbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 36)); // tên
+            tbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 36)); // giá
+            tbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 36)); // diện tích
+            tbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 36)); // trạng thái
+            tbl.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // ⭐ DỊCH VỤ
+
+            // ===== DOCK CONTROL =====
+            txtRoomName.Dock = DockStyle.Fill;
+            txtRoomRate.Dock = DockStyle.Fill;
+            txtArea.Dock = DockStyle.Fill;
+            cbStatus.Dock = DockStyle.Fill;
+
+            clService.Dock = DockStyle.Fill;
+            clService.IntegralHeight = false;
+            clService.ScrollAlwaysVisible = true;
+
+            // ===== ADD FIELD =====
+            tbl.Controls.Add(new Label { Text = "Tên phòng", Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 0);
+            tbl.Controls.Add(txtRoomName, 1, 0);
+
+            tbl.Controls.Add(new Label { Text = "Giá phòng", Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 1);
+            tbl.Controls.Add(txtRoomRate, 1, 1);
+
+            tbl.Controls.Add(new Label { Text = "Diện tích", Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 2);
+            tbl.Controls.Add(txtArea, 1, 2);
+
+            tbl.Controls.Add(new Label { Text = "Trạng thái", Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 3);
+            tbl.Controls.Add(cbStatus, 1, 3);
+
+            // ⭐ LABEL + CHECKLIST CÙNG ROW → CĂN GIỮA ĐẸP
+            Label lblService = new Label
+            {
+                Text = "Dịch vụ",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            tbl.Controls.Add(lblService, 0, 4);
+            tbl.Controls.Add(clService, 1, 4);
+
+            // ===== BUTTON PANEL =====
+            FlowLayoutPanel pnlBtn = new FlowLayoutPanel();
+            pnlBtn.Dock = DockStyle.Fill;
+            pnlBtn.Padding = new Padding(5);
+
+            btnAdd.Size = btnUpdate.Size = btnDelete.Size = new Size(100, 32);
+            pnlBtn.Controls.AddRange(new Control[] { btnAdd, btnUpdate, btnDelete });
+
+            detailWrap.Controls.Add(tbl, 0, 0);
+            detailWrap.Controls.Add(pnlBtn, 0, 1);
+            gbDetail.Controls.Add(detailWrap);
+
+            // ================== GROUPBOX LIST ==================
+            GroupBox gbList = new GroupBox();
+            gbList.Text = "Danh sách phòng";
+            gbList.Dock = DockStyle.Fill;
+            gbList.Padding = new Padding(8);
+
+            dgRoomLists.Dock = DockStyle.Fill;
+            dgRoomLists.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgRoomLists.RowTemplate.Height = 28;
+
+            gbList.Controls.Add(dgRoomLists);
+
+            // ===== ADD MAIN =====
+            main.Controls.Add(gbDetail, 0, 0);
+            main.Controls.Add(gbList, 0, 1);
+
+            this.Controls.Add(main);
+            this.ResumeLayout();
+        }
+
+
         // Hien thi danh sach phong len DataGridView
         void loadData()
         {
@@ -69,7 +188,7 @@ namespace QuanLyPhongTro_1
             {
                 conn.Open();
 
-                string query = " INSERT INTO Room (room_name, price, area, status, is_active)VALUES(@room_name, @price, @area, @status,@is_active);SELECT LAST_INSERT_ID();";
+                string query = "INSERT INTO Room (room_name, price, area, status, is_active)VALUES(@room_name, @price, @area, @status,@is_active);SELECT LAST_INSERT_ID();";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
