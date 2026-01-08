@@ -346,6 +346,7 @@
             btnUpdate.TabIndex = 16;
             btnUpdate.Text = "Cập Nhập";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // txtNhapLai
             // 
@@ -432,6 +433,7 @@
             dgvlistViewContract.RowHeadersWidth = 62;
             dgvlistViewContract.Size = new Size(667, 427);
             dgvlistViewContract.TabIndex = 0;
+            dgvlistViewContract.CellClick += dgvlistViewContract_CellClick;
             // 
             // button1
             // 
@@ -444,6 +446,7 @@
             button1.TabIndex = 20;
             button1.Text = "Tìm kiếm";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // textBox9
             // 

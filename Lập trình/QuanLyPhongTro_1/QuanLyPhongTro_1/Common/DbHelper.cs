@@ -10,7 +10,7 @@ namespace QuanLyPhongTro_1.Common
     internal class DbHelper
     {
         public static string ConnectionString =
-            "Server=localhost;Database=Room_Management;Uid=root;Pwd=;";
+            "Server=localhost;Database=Room_Management;Uid=root;Pwd=157359";
 
         public static MySqlConnection GetConnection()
         {

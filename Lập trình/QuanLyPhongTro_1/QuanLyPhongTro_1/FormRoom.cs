@@ -196,7 +196,7 @@ namespace QuanLyPhongTro_1
                     cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(txtRoomRate.Text));
                     cmd.Parameters.AddWithValue("@area", Convert.ToInt32(txtArea.Text));
                     cmd.Parameters.AddWithValue("@status", cbStatus.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@is_active", cbIsActive.Checked ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@is_active", 1);
                     cmd.ExecuteNonQuery();
                     newRoomId = Convert.ToInt32(cmd.ExecuteScalar());
                 }

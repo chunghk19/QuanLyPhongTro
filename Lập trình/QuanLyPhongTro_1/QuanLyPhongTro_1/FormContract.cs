@@ -19,9 +19,257 @@ namespace QuanLyPhongTro_1
         public FormContract()
         {
             InitializeComponent();
+            OverrideDesignBeautiful();
             intoCbRoom();
             contractLoad();
         }
+        private void OverrideDesignBeautiful()
+        {
+            // Xóa hết control cũ
+            this.Controls.Clear();
+
+            // Fonts
+            Font fontTitle = new Font("Segoe UI Semibold", 18F);
+            Font fontSection = new Font("Segoe UI Semibold", 14F);
+            Font fontLabel = new Font("Segoe UI", 11F);
+            Font fontInput = new Font("Segoe UI", 11F);
+
+            // ===== Main TableLayoutPanel =====
+            TableLayoutPanel mainLayout = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 2,
+                RowCount = 1,
+                Padding = new Padding(10)
+            };
+            mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            this.Controls.Add(mainLayout);
+
+            // ===== LEFT PANEL =====
+            Panel leftPanelScroll = new Panel()
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true
+            };
+            mainLayout.Controls.Add(leftPanelScroll, 0, 0);
+
+            TableLayoutPanel leftPanel = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                RowCount = 2
+            };
+            leftPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            leftPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            leftPanelScroll.Controls.Add(leftPanel);
+
+            // --- GroupBox Thông tin hợp đồng ---
+            GroupBox gbDetail = new GroupBox()
+            {
+                Text = "Thông tin hợp đồng",
+                Font = fontSection,
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                Padding = new Padding(10)
+            };
+
+            TableLayoutPanel tblDetail = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 2,
+                RowCount = 9,
+                AutoSize = true
+            };
+            tblDetail.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tblDetail.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+
+            void AddDetailRow(string labelText, Control control, int rowIndex)
+            {
+                Label lbl = new Label()
+                {
+                    Text = labelText,
+                    Font = fontLabel,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    Margin = new Padding(3)
+                };
+                control.Font = fontInput;
+                control.Dock = DockStyle.Fill;
+                control.Margin = new Padding(3);
+                tblDetail.Controls.Add(lbl, 0, rowIndex);
+                tblDetail.Controls.Add(control, 1, rowIndex);
+            }
+
+            AddDetailRow("Họ và tên", txtFullName, 0);
+            AddDetailRow("SĐT", txtSDT, 1);
+            AddDetailRow("CCCD", txtCCCD, 2);
+            AddDetailRow("Địa chỉ", txtAddress, 3);
+            AddDetailRow("Phòng thuê", cbRoom, 4);
+            AddDetailRow("Giá phòng", txtPrice, 5);
+            AddDetailRow("Ngày bắt đầu", TimeStart, 6);
+            AddDetailRow("Ngày kết thúc", TimeEnd, 7);
+            AddDetailRow("Tiền cọc", txtDeposit, 8);
+
+            gbDetail.Controls.Add(tblDetail);
+            leftPanel.Controls.Add(gbDetail, 0, 0);
+
+            // --- GroupBox Thông tin tài khoản ---
+            GroupBox gbUser = new GroupBox()
+            {
+                Text = "Thông tin tài khoản",
+                Font = fontSection,
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                Padding = new Padding(10)
+            };
+
+            TableLayoutPanel tblUser = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 2,
+                RowCount = 5,
+                AutoSize = true
+            };
+            tblUser.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tblUser.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+
+            void AddUserRow(string labelText, Control control, int rowIndex)
+            {
+                Label lbl = new Label()
+                {
+                    Text = labelText,
+                    Font = fontLabel,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    Margin = new Padding(3)
+                };
+                control.Font = fontInput;
+                control.Dock = DockStyle.Fill;
+                control.Margin = new Padding(3);
+                tblUser.Controls.Add(lbl, 0, rowIndex);
+                tblUser.Controls.Add(control, 1, rowIndex);
+            }
+
+            AddUserRow("Tài khoản", txtUserName, 0);
+            AddUserRow("Mật khẩu", txtPassWord, 1);
+            AddUserRow("Nhập lại MK", txtNhapLai, 2);
+            AddUserRow("Email", txtEmail, 3);
+
+            // --- FlowLayoutPanel nút ---
+            FlowLayoutPanel flButtons = new FlowLayoutPanel()
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                AutoSize = true,
+                WrapContents = false, // tránh xuống dòng
+                Dock = DockStyle.Fill,
+                Margin = new Padding(0, 5, 0, 0)
+            };
+
+            // Nút tự động mở rộng đủ chữ
+            btnAdd.AutoSize = true;
+            btnUpdate.AutoSize = true;
+            btnDelete.AutoSize = true;
+
+            btnAdd.Font = new Font("Segoe UI", 11F);
+            btnUpdate.Font = new Font("Segoe UI", 11F);
+            btnDelete.Font = new Font("Segoe UI", 11F);
+
+            flButtons.Controls.Add(btnAdd);
+            flButtons.Controls.Add(btnUpdate);
+            flButtons.Controls.Add(btnDelete);
+
+            tblUser.Controls.Add(flButtons, 0, 4);
+            tblUser.SetColumnSpan(flButtons, 2);
+
+            gbUser.Controls.Add(tblUser);
+            leftPanel.Controls.Add(gbUser, 0, 1);
+
+            // ===== RIGHT PANEL =====
+            TableLayoutPanel rightPanel = new TableLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                RowCount = 2,
+                ColumnCount = 1
+            };
+            rightPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F)); // search + filter
+            rightPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F)); // DGV
+            mainLayout.Controls.Add(rightPanel, 1, 0);
+
+            // --- Panel tìm kiếm + lọc ---
+            Panel topPanel = new Panel() { Dock = DockStyle.Fill };
+            rightPanel.Controls.Add(topPanel, 0, 0);
+
+            FlowLayoutPanel searchPanel = new FlowLayoutPanel()
+            {
+                Dock = DockStyle.Top,
+                FlowDirection = FlowDirection.LeftToRight,
+                Height = 40,
+                Padding = new Padding(0, 0, 0, 5),
+                WrapContents = false
+            };
+            button1.Height = 30;
+            textBox9.Width = 300;
+            searchPanel.Controls.Add(button1);
+            searchPanel.Controls.Add(textBox9);
+            topPanel.Controls.Add(searchPanel);
+
+            FlowLayoutPanel filterPanel = new FlowLayoutPanel()
+            {
+                Dock = DockStyle.Top,
+                FlowDirection = FlowDirection.LeftToRight,
+                Height = 35,
+                Padding = new Padding(0),
+                WrapContents = false
+            };
+            button2.Height = 30;
+            comboBox1.Width = 200;
+            filterPanel.Controls.Add(button2);
+            filterPanel.Controls.Add(comboBox1);
+            topPanel.Controls.Add(filterPanel);
+
+            // --- GroupBox DGV ---
+            GroupBox gbDGV = new GroupBox()
+            {
+                Text = "Danh sách hợp đồng",
+                Dock = DockStyle.Fill,
+                Padding = new Padding(10),
+                Font = new Font("Segoe UI Semibold", 14F)
+            };
+            rightPanel.Controls.Add(gbDGV, 0, 1);
+
+            Panel dgvPanel = new Panel() { Dock = DockStyle.Fill, Padding = new Padding(0) };
+            gbDGV.Controls.Add(dgvPanel);
+
+            dgvlistViewContract.Dock = DockStyle.Fill;
+            dgvlistViewContract.Font = new Font("Segoe UI", 10F);
+            dgvlistViewContract.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 11F);
+            dgvlistViewContract.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dgvlistViewContract.EnableHeadersVisualStyles = false;
+            dgvlistViewContract.RowTemplate.Height = 28;
+            dgvlistViewContract.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvlistViewContract.MultiSelect = false;
+            dgvlistViewContract.ScrollBars = ScrollBars.Both;
+            dgvlistViewContract.AllowUserToAddRows = false;
+            dgvlistViewContract.AllowUserToDeleteRows = false;
+            dgvlistViewContract.AllowUserToResizeRows = false;
+
+            // ===== DGV scroll ngang và cột rộng hợp lý =====
+            dgvlistViewContract.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dgvlistViewContract.DataBindingComplete += (s, e) =>
+            {
+                // set width cột sau khi có dữ liệu
+                foreach (DataGridViewColumn col in dgvlistViewContract.Columns)
+                {
+                    col.Width = 150;
+                    col.MinimumWidth = 100;
+                }
+            };
+
+            dgvPanel.Controls.Add(dgvlistViewContract);
+        }
+
+
 
         public static string HashPassword(string password)
         {
@@ -62,23 +310,46 @@ namespace QuanLyPhongTro_1
 
             return true;
         }
-        private void intoCbRoom()
+        private void intoCbRoom(string currentRoomName = null)
         {
+            cbRoom.Items.Clear(); // xóa cũ
+
             using (MySqlConnection conn = new MySqlConnection(conStr))
             {
                 try
                 {
                     conn.Open();
+
+                    // 1. Lấy tất cả phòng trống
                     string query = "SELECT id, room_name FROM Room WHERE status = 'Trống'";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
+
+                    List<string> roomNamesAdded = new List<string>();
                     while (reader.Read())
                     {
                         int roomId = reader.GetInt32("id");
                         string roomName = reader.GetString("room_name");
-                        cbRoom.Items.Add(new ListRoom(roomName, roomId));
+                        cbRoom.Items.Add(new ListRoom(roomName, roomId)); // lưu roomId vào Value
+                        roomNamesAdded.Add(roomName);
                     }
                     reader.Close();
+
+                    // 2. Nếu phòng khách đang thuê chưa có trong combobox
+                    if (!string.IsNullOrEmpty(currentRoomName) && !roomNamesAdded.Contains(currentRoomName))
+                    {
+                        string queryRoom = "SELECT id, room_name FROM Room WHERE room_name = @name";
+                        MySqlCommand cmdRoom = new MySqlCommand(queryRoom, conn);
+                        cmdRoom.Parameters.AddWithValue("@name", currentRoomName);
+                        MySqlDataReader readerRoom = cmdRoom.ExecuteReader();
+                        if (readerRoom.Read())
+                        {
+                            int roomId = readerRoom.GetInt32("id");
+                            string roomName = readerRoom.GetString("room_name");
+                            cbRoom.Items.Add(new ListRoom(roomName, roomId)); // lưu roomId luôn
+                        }
+                        readerRoom.Close();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -86,6 +357,9 @@ namespace QuanLyPhongTro_1
                 }
             }
         }
+
+
+
         private void contractLoad()
         {
             using (MySqlConnection conn = new MySqlConnection(conStr))
@@ -93,7 +367,7 @@ namespace QuanLyPhongTro_1
                 try
                 {
                     conn.Open();
-                    MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter("SELECT \r\n    c.id AS contract_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r \r\n    ON c.room_id = r.id\r\nJOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nJOIN Tenant t \r\n    ON ct.tenant_id = t.id\r\nWHERE \r\n    c.is_active = true\r\n    AND r.is_active = true\r\n    AND t.is_active = true\r\nORDER BY \r\n    c.id, ct.is_primary DESC;\r\n", conn);
+                    MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter("SELECT \r\n    c.id AS contract_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card, t.phone AS tenant_phone, t.address AS tenant_address,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r \r\n    ON c.room_id = r.id\r\nJOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nJOIN Tenant t \r\n    ON ct.tenant_id = t.id\r\nWHERE \r\n    c.is_active = true\r\n    AND r.is_active = true\r\n    AND t.is_active = true\r\nORDER BY \r\n    c.id, ct.is_primary DESC;\r\n", conn);
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
                     dgvlistViewContract.DataSource = dt;
@@ -165,6 +439,7 @@ namespace QuanLyPhongTro_1
                     MySqlCommand cmdUser = new MySqlCommand(insertUser, conn, trans);
                     cmdUser.Parameters.AddWithValue("@user", txtUserName.Text);
                     cmdUser.Parameters.AddWithValue("@pass", HashPassword(txtPassWord.Text));
+                    cmdUser.Parameters.AddWithValue("@email", txtEmail.Text);
                     cmdUser.ExecuteNonQuery();
                     long userId = cmdUser.LastInsertedId;
 
@@ -206,13 +481,14 @@ namespace QuanLyPhongTro_1
 
                     // 6. Update Room status
                     string updateRoom =
-                        "UPDATE Room SET status = 'Đang thuê' WHERE id = @room";
+                        "UPDATE Room SET status = 'Đang thuê', is_active = 1 WHERE id = @room";
                     MySqlCommand cmdRoom = new MySqlCommand(updateRoom, conn, trans);
                     cmdRoom.Parameters.AddWithValue("@room", ((ListRoom)cbRoom.SelectedItem).Value);
                     cmdRoom.ExecuteNonQuery();
 
                     trans.Commit();
                     MessageBox.Show("Thêm hợp đồng thành công!");
+                    contractLoad();
                 }
                 catch (Exception ex)
                 {
@@ -225,6 +501,109 @@ namespace QuanLyPhongTro_1
         private void FormContract_Load(object sender, EventArgs e)
         {
 
+        }
+        int selectID = -1;
+        int oldRoomID = -1;
+        private void dgvlistViewContract_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvlistViewContract.Rows[e.RowIndex];
+                string roomNameOfCustomer = row.Cells["room_name"].Value.ToString();
+
+                // Load combobox (phòng trống + phòng đang thuê)
+                intoCbRoom(roomNameOfCustomer);
+
+                // Chọn phòng dựa trên Text nhưng Value vẫn giữ room_id
+                foreach (ListRoom item in cbRoom.Items)
+                {
+                    if (item.Text == roomNameOfCustomer)
+                    {
+                        cbRoom.SelectedItem = item;
+                        break;
+                    }
+                }
+
+
+                // Load thông tin khách
+                selectID = Convert.ToInt32(row.Cells["contract_id"].Value);
+                oldRoomID = ((ListRoom)cbRoom.SelectedItem).Value;
+                txtFullName.Text = row.Cells["tenant_name"].Value.ToString();
+                txtSDT.Text = row.Cells["tenant_phone"].Value.ToString();
+                txtCCCD.Text = row.Cells["tenant_id_card"].Value.ToString();
+                txtAddress.Text = row.Cells["tenant_address"].Value.ToString();
+                txtPrice.Text = row.Cells["contract_price"].Value.ToString();
+                txtDeposit.Text = row.Cells["deposit"].Value.ToString();
+                TimeStart.Value = Convert.ToDateTime(row.Cells["start_date"].Value);
+                TimeEnd.Value = Convert.ToDateTime(row.Cells["end_date"].Value);
+            }
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = MessageBox.Show("bạn có muốn cập nhật không", "confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (rs == DialogResult.Yes)
+            {
+                using (MySqlConnection conn = new MySqlConnection(conStr))
+                {
+                    conn.Open();
+                    string update = "update Contract set room_id = @id, start_date = @startdate, end_date = @enddate, deposit = @deposit, price = @price where id = @contractid"; ;
+                    MySqlCommand cmd = new MySqlCommand(update, conn);
+                    cmd.Parameters.AddWithValue("@id", ((ListRoom)cbRoom.SelectedItem).Value);
+                    cmd.Parameters.AddWithValue("@startdate", TimeStart.Value);
+                    cmd.Parameters.AddWithValue("@enddate", TimeEnd.Value);
+                    cmd.Parameters.AddWithValue("@deposit", Convert.ToDecimal(txtDeposit.Text));
+                    cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(txtPrice.Text));
+                    cmd.Parameters.AddWithValue("@contractid", selectID);
+                    cmd.ExecuteNonQuery();
+
+                    string updateTenant = @"
+                                        UPDATE Tenant t
+                                        JOIN Contract_Tenant ct ON t.id = ct.tenant_id
+                                        SET 
+                                            t.full_name = @name,
+                                            t.phone = @phone,
+                                            t.id_card = @cccd,
+                                            t.address = @address
+                                        WHERE 
+                                            ct.contract_id = @contractid
+                                            AND ct.is_primary = 1
+                                    ";
+                    MySqlCommand cmdTenant = new MySqlCommand(updateTenant, conn);
+                    cmdTenant.Parameters.AddWithValue("@name", txtFullName.Text);
+                    cmdTenant.Parameters.AddWithValue("@phone", txtSDT.Text);
+                    cmdTenant.Parameters.AddWithValue("@cccd", txtCCCD.Text);
+                    cmdTenant.Parameters.AddWithValue("@address", txtAddress.Text);
+                    cmdTenant.Parameters.AddWithValue("@contractid", selectID);
+                    cmdTenant.ExecuteNonQuery();
+
+                    string updateOldRoom = "UPDATE Room SET status = 'Trống', is_active = 1 WHERE id = @oldroom";
+                    MySqlCommand cmdOldRoom = new MySqlCommand(updateOldRoom, conn);
+                    cmdOldRoom.Parameters.AddWithValue("@oldroom", oldRoomID);
+                    cmdOldRoom.ExecuteNonQuery();
+
+                    string updateRoom = "UPDATE Room SET status = 'Đang thuê', is_active = 1 WHERE id = @room";
+                    MySqlCommand cmdRoom = new MySqlCommand(updateRoom, conn);
+                    cmdRoom.Parameters.AddWithValue("@room", ((ListRoom)cbRoom.SelectedItem).Value);
+                    cmdRoom.ExecuteNonQuery();
+
+                    MessageBox.Show("Cập nhật hợp đồng thành công!");
+                    contractLoad();
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using(MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT \r\n    c.id AS contract_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card, t.phone AS tenant_phone, t.address AS tenant_address,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r \r\n    ON c.room_id = r.id\r\nJOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nJOIN Tenant t \r\n    ON ct.tenant_id = t.id\r\nWHERE \r\n    c.is_active = true\r\n    AND r.is_active = true\r\n    AND t.is_active = true\r\n    AND t.full_name LIKE @search or t.phone like @search or t.id_card like @search\r\nORDER BY \r\n    c.id, ct.is_primary DESC;\r\n", conn);
+                cmd.Parameters.AddWithValue("@search", "%" + textBox9.Text + "%");
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sqlDataAdapter.Fill(dt);
+                dgvlistViewContract.DataSource = dt;
+            }
         }
     }
 }
