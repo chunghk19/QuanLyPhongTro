@@ -7,7 +7,7 @@ namespace QuanLyPhongTro_1
 {
     public partial class FormMDI : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = DbHelper.ConnectionString;
         public FormMDI()
         {
             InitializeComponent();
@@ -234,6 +234,13 @@ namespace QuanLyPhongTro_1
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void lậpHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormInvoice fr = new FormInvoice();
+            fr.MdiParent = this;
+            fr.Show();
         }
     }
 }

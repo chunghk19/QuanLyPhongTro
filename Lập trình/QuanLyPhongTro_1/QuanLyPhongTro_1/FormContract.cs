@@ -9,18 +9,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using QuanLyPhongTro_1.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace QuanLyPhongTro_1
 {
     public partial class FormContract : Form
     {
-        string conStr = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string conStr = DbHelper.ConnectionString;
         public FormContract()
         {
             InitializeComponent();
             OverrideDesignBeautiful();
             intoCbRoom();
+            // ===== ADD FILTER ITEMS =====
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Tất cả hợp đồng");
+            comboBox1.Items.Add("Hợp đồng còn hạn");
+            comboBox1.Items.Add("Hợp đồng sắp hết hạn");
+            comboBox1.Items.Add("Hợp đồng đã hết hạn");
+            comboBox1.SelectedIndex = 0;
             contractLoad();
         }
         private void OverrideDesignBeautiful()
@@ -358,6 +366,62 @@ namespace QuanLyPhongTro_1
             }
         }
 
+        private void AutoEndExpiredContracts()
+        {
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlTransaction trans = conn.BeginTransaction();
+
+                try
+                {
+                    // ===== LẤY DANH SÁCH HỢP ĐỒNG QUÁ HẠN =====
+                    string getExpiredSql = @"
+                SELECT c.id, c.room_id
+                FROM Contract c
+                WHERE c.is_active = 1
+                  AND c.end_date < CURDATE()
+                  AND NOT EXISTS (
+                      SELECT 1 FROM Invoice i
+                      WHERE i.contract_id = c.id AND i.is_paid = 0
+                  )
+            ";
+
+                    MySqlCommand cmdGet = new MySqlCommand(getExpiredSql, conn, trans);
+
+                    using (var reader = cmdGet.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int contractId = reader.GetInt32("id");
+                            int roomId = reader.GetInt32("room_id");
+
+                            // Kết thúc hợp đồng
+                            string endContractSql =
+                                "UPDATE Contract SET is_active = 0 WHERE id = @cid";
+                            MySqlCommand cmdEnd =
+                                new MySqlCommand(endContractSql, conn, trans);
+                            cmdEnd.Parameters.AddWithValue("@cid", contractId);
+                            cmdEnd.ExecuteNonQuery();
+
+                            // Trả phòng
+                            string updateRoomSql =
+                                "UPDATE Room SET status = 'Trống', is_active = 1 WHERE id = @room";
+                            MySqlCommand cmdRoom =
+                                new MySqlCommand(updateRoomSql, conn, trans);
+                            cmdRoom.Parameters.AddWithValue("@room", roomId);
+                            cmdRoom.ExecuteNonQuery();
+                        }
+                    }
+
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                }
+            }
+        }
 
 
         private void contractLoad()
@@ -367,7 +431,7 @@ namespace QuanLyPhongTro_1
                 try
                 {
                     conn.Open();
-                    MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter("SELECT \r\n    c.id AS contract_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card, t.phone AS tenant_phone, t.address AS tenant_address,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r \r\n    ON c.room_id = r.id\r\nJOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nJOIN Tenant t \r\n    ON ct.tenant_id = t.id\r\nWHERE \r\n    c.is_active = true\r\n    AND r.is_active = true\r\n    AND t.is_active = true\r\nORDER BY \r\n    c.id, ct.is_primary DESC;\r\n", conn);
+                    MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter("SELECT \r\n    c.id AS contract_id,\r\n    t.id AS tenant_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card,\r\n    t.phone AS tenant_phone,\r\n    t.address AS tenant_address,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r ON c.room_id = r.id\r\nJOIN Contract_Tenant ct ON c.id = ct.contract_id\r\nJOIN Tenant t ON ct.tenant_id = t.id\r\nWHERE c.is_active = 1\r\nORDER BY c.id, ct.is_primary DESC;\r\n", conn);
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
                     dgvlistViewContract.DataSource = dt;
@@ -405,62 +469,96 @@ namespace QuanLyPhongTro_1
 
                 try
                 {
-                    // 1. Check username
-                    string checkQuery = "SELECT 1 FROM `User` WHERE username = @user";
-                    MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn, trans);
-                    checkCmd.Parameters.AddWithValue("@user", txtUserName.Text);
+                    long tenantId = -1;
+                    long userId = -1;
 
-                    if (checkCmd.ExecuteScalar() != null)
+                    // ================== CHECK TENANT BẰNG ID ==================
+                    if (selectTenantID != -1)
                     {
-                        MessageBox.Show("Tên đăng nhập đã tồn tại!");
-                        trans.Rollback();
-                        return;
+                        string checkTenantSql =
+                            "SELECT id, user_id FROM Tenant WHERE id = @tid AND is_active = 1";
+
+                        MySqlCommand cmdCheckTenant =
+                            new MySqlCommand(checkTenantSql, conn, trans);
+                        cmdCheckTenant.Parameters.AddWithValue("@tid", selectTenantID);
+
+                        using (var reader = cmdCheckTenant.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                tenantId = reader.GetInt64("id");
+                                userId = reader.GetInt64("user_id");
+                            }
+                        }
                     }
 
-                    // 2. Insert User
-                    string username = txtUserName.Text;
-                    string password = txtPassWord.Text;
-                    string passRe = txtNhapLai.Text;
-                    string email = txtEmail.Text;
 
-                    if (username == "" || password == "" || email == "" || passRe == "")
+                    // ================== NẾU KHÁCH CHƯA TỒN TẠI ==================
+                    if (tenantId == -1)
                     {
-                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
-                        return;
+                        // ---- check username ----
+                        string checkUserSql = "SELECT 1 FROM `User` WHERE username = @user";
+                        MySqlCommand cmdCheckUser = new MySqlCommand(checkUserSql, conn, trans);
+                        cmdCheckUser.Parameters.AddWithValue("@user", txtUserName.Text);
+
+                        if (cmdCheckUser.ExecuteScalar() != null)
+                        {
+                            MessageBox.Show("Tên đăng nhập đã tồn tại!");
+                            trans.Rollback();
+                            return;
+                        }
+
+                        if (txtUserName.Text == "" || txtPassWord.Text == "" ||
+                            txtNhapLai.Text == "" || txtEmail.Text == "")
+                        {
+                            MessageBox.Show("Vui lòng nhập đầy đủ thông tin tài khoản!");
+                            trans.Rollback();
+                            return;
+                        }
+
+                        if (txtPassWord.Text != txtNhapLai.Text)
+                        {
+                            MessageBox.Show("Mật khẩu nhập lại không khớp!");
+                            trans.Rollback();
+                            return;
+                        }
+
+                        // ---- insert User ----
+                        string insertUser = @"
+                    INSERT INTO `User` (username, password_hash, role, is_active, created_at, email)
+                    VALUES (@user, @pass, 'TENANT', 1, NOW(), @email)
+                ";
+
+                        MySqlCommand cmdUser = new MySqlCommand(insertUser, conn, trans);
+                        cmdUser.Parameters.AddWithValue("@user", txtUserName.Text);
+                        cmdUser.Parameters.AddWithValue("@pass", HashPassword(txtPassWord.Text));
+                        cmdUser.Parameters.AddWithValue("@email", txtEmail.Text);
+                        cmdUser.ExecuteNonQuery();
+
+                        userId = cmdUser.LastInsertedId;
+
+                        // ---- insert Tenant ----
+                        string insertTenant = @"
+                    INSERT INTO Tenant (full_name, phone, id_card, address, user_id, is_active)
+                    VALUES (@name, @phone, @cccd, @address, @user_id, 1)
+                ";
+
+                        MySqlCommand cmdTenant = new MySqlCommand(insertTenant, conn, trans);
+                        cmdTenant.Parameters.AddWithValue("@name", txtFullName.Text);
+                        cmdTenant.Parameters.AddWithValue("@phone", txtSDT.Text);
+                        cmdTenant.Parameters.AddWithValue("@cccd", txtCCCD.Text);
+                        cmdTenant.Parameters.AddWithValue("@address", txtAddress.Text);
+                        cmdTenant.Parameters.AddWithValue("@user_id", userId);
+                        cmdTenant.ExecuteNonQuery();
+
+                        tenantId = cmdTenant.LastInsertedId;
                     }
-                    if (passRe != password)
-                    {
-                        MessageBox.Show("Mật khẩu nhập lại không trung khớp");
-                    }
-                    string insertUser =
-                        "INSERT INTO `User` (username, password_hash, role, is_active, created_at, email) " +
-                        "VALUES (@user, @pass, 'TENANT', 1, NOW(), @email)";
 
-                    MySqlCommand cmdUser = new MySqlCommand(insertUser, conn, trans);
-                    cmdUser.Parameters.AddWithValue("@user", txtUserName.Text);
-                    cmdUser.Parameters.AddWithValue("@pass", HashPassword(txtPassWord.Text));
-                    cmdUser.Parameters.AddWithValue("@email", txtEmail.Text);
-                    cmdUser.ExecuteNonQuery();
-                    long userId = cmdUser.LastInsertedId;
-
-                    // 3. Insert Tenant
-                    string insertTenant =
-                        "INSERT INTO Tenant (full_name, phone, id_card, address, user_id, is_active) " +
-                        "VALUES (@name, @phone, @cccd, @address, @user_id, 1)";
-
-                    MySqlCommand cmdTenant = new MySqlCommand(insertTenant, conn, trans);
-                    cmdTenant.Parameters.AddWithValue("@name", txtFullName.Text);
-                    cmdTenant.Parameters.AddWithValue("@phone", txtSDT.Text);
-                    cmdTenant.Parameters.AddWithValue("@cccd", txtCCCD.Text);
-                    cmdTenant.Parameters.AddWithValue("@address", txtAddress.Text);
-                    cmdTenant.Parameters.AddWithValue("@user_id", userId);
-                    cmdTenant.ExecuteNonQuery();
-                    long tenantId = cmdTenant.LastInsertedId;
-
-                    // 4. Insert Contract
-                    string insertContract =
-                        "INSERT INTO Contract (room_id, start_date, end_date, deposit, price, is_active) " +
-                        "VALUES (@room_id, @start, @end, @deposit, @price, 1)";
+                    // ================== INSERT CONTRACT ==================
+                    string insertContract = @"
+                INSERT INTO Contract (room_id, start_date, end_date, deposit, price, is_active)
+                VALUES (@room_id, @start, @end, @deposit, @price, 1)
+            ";
 
                     MySqlCommand cmdContract = new MySqlCommand(insertContract, conn, trans);
                     cmdContract.Parameters.AddWithValue("@room_id", ((ListRoom)cbRoom.SelectedItem).Value);
@@ -469,19 +567,22 @@ namespace QuanLyPhongTro_1
                     cmdContract.Parameters.AddWithValue("@deposit", deposit);
                     cmdContract.Parameters.AddWithValue("@price", price);
                     cmdContract.ExecuteNonQuery();
+
                     long contractId = cmdContract.LastInsertedId;
 
-                    // 5. Link Contract - Tenant
+                    // ================== LINK CONTRACT - TENANT ==================
                     string insertCT =
                         "INSERT INTO Contract_Tenant (contract_id, tenant_id, is_primary) VALUES (@c, @t, 1)";
+
                     MySqlCommand cmdCT = new MySqlCommand(insertCT, conn, trans);
                     cmdCT.Parameters.AddWithValue("@c", contractId);
                     cmdCT.Parameters.AddWithValue("@t", tenantId);
                     cmdCT.ExecuteNonQuery();
 
-                    // 6. Update Room status
+                    // ================== UPDATE ROOM ==================
                     string updateRoom =
                         "UPDATE Room SET status = 'Đang thuê', is_active = 1 WHERE id = @room";
+
                     MySqlCommand cmdRoom = new MySqlCommand(updateRoom, conn, trans);
                     cmdRoom.Parameters.AddWithValue("@room", ((ListRoom)cbRoom.SelectedItem).Value);
                     cmdRoom.ExecuteNonQuery();
@@ -498,12 +599,14 @@ namespace QuanLyPhongTro_1
             }
         }
 
+
         private void FormContract_Load(object sender, EventArgs e)
         {
-
+            AutoEndExpiredContracts();
         }
-        int selectID = -1;
         int oldRoomID = -1;
+        int selectContractID = -1;
+        int selectTenantID = -1;
         private void dgvlistViewContract_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -526,7 +629,8 @@ namespace QuanLyPhongTro_1
 
 
                 // Load thông tin khách
-                selectID = Convert.ToInt32(row.Cells["contract_id"].Value);
+                selectContractID = Convert.ToInt32(row.Cells["contract_id"].Value);
+                selectTenantID = Convert.ToInt32(row.Cells["tenant_id"].Value);
                 oldRoomID = ((ListRoom)cbRoom.SelectedItem).Value;
                 txtFullName.Text = row.Cells["tenant_name"].Value.ToString();
                 txtSDT.Text = row.Cells["tenant_phone"].Value.ToString();
@@ -553,7 +657,7 @@ namespace QuanLyPhongTro_1
                     cmd.Parameters.AddWithValue("@enddate", TimeEnd.Value);
                     cmd.Parameters.AddWithValue("@deposit", Convert.ToDecimal(txtDeposit.Text));
                     cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(txtPrice.Text));
-                    cmd.Parameters.AddWithValue("@contractid", selectID);
+                    cmd.Parameters.AddWithValue("@contractid",selectContractID);
                     cmd.ExecuteNonQuery();
 
                     string updateTenant = @"
@@ -573,7 +677,7 @@ namespace QuanLyPhongTro_1
                     cmdTenant.Parameters.AddWithValue("@phone", txtSDT.Text);
                     cmdTenant.Parameters.AddWithValue("@cccd", txtCCCD.Text);
                     cmdTenant.Parameters.AddWithValue("@address", txtAddress.Text);
-                    cmdTenant.Parameters.AddWithValue("@contractid", selectID);
+                    cmdTenant.Parameters.AddWithValue("@contractid", selectContractID);
                     cmdTenant.ExecuteNonQuery();
 
                     string updateOldRoom = "UPDATE Room SET status = 'Trống', is_active = 1 WHERE id = @oldroom";
@@ -594,7 +698,7 @@ namespace QuanLyPhongTro_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using(MySqlConnection conn = new MySqlConnection(conStr))
+            using (MySqlConnection conn = new MySqlConnection(conStr))
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT \r\n    c.id AS contract_id,\r\n    r.room_name AS room_name,\r\n    c.start_date,\r\n    c.end_date,\r\n    c.price AS contract_price,\r\n    c.deposit,\r\n    t.full_name  AS tenant_name,\r\n    t.id_card AS tenant_id_card, t.phone AS tenant_phone, t.address AS tenant_address,\r\n    ct.is_primary AS is_primary_tenant\r\nFROM Contract c\r\nJOIN Room r \r\n    ON c.room_id = r.id\r\nJOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nJOIN Tenant t \r\n    ON ct.tenant_id = t.id\r\nWHERE \r\n    c.is_active = true\r\n    AND r.is_active = true\r\n    AND t.is_active = true\r\n    AND t.full_name LIKE @search or t.phone like @search or t.id_card like @search\r\nORDER BY \r\n    c.id, ct.is_primary DESC;\r\n", conn);
@@ -602,6 +706,164 @@ namespace QuanLyPhongTro_1
                 MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sqlDataAdapter.Fill(dt);
+                dgvlistViewContract.DataSource = dt;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectContractID == -1)
+            {
+                MessageBox.Show("Vui lòng chọn hợp đồng cần kết thúc!");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlTransaction trans = conn.BeginTransaction();
+
+                try
+                {
+                    // ===== 1. CHECK HÓA ĐƠN CHƯA THANH TOÁN =====
+                    string checkInvoiceSql = @"
+                SELECT COUNT(*) 
+                FROM Invoice 
+                WHERE contract_id = @cid AND is_paid = 0
+            ";
+
+                    MySqlCommand cmdCheckInvoice =
+                        new MySqlCommand(checkInvoiceSql, conn, trans);
+                    cmdCheckInvoice.Parameters.AddWithValue("@cid", selectContractID);
+
+                    int unpaidCount = Convert.ToInt32(cmdCheckInvoice.ExecuteScalar());
+
+                    if (unpaidCount > 0)
+                    {
+                        MessageBox.Show(
+                            "Không thể kết thúc hợp đồng!\nHợp đồng vẫn còn hóa đơn chưa thanh toán.",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        trans.Rollback();
+                        return;
+                    }
+
+                    // ===== 2. LẤY ROOM ID =====
+                    int roomId;
+                    string getRoomSql =
+                        "SELECT room_id FROM Contract WHERE id = @cid AND is_active = 1";
+
+                    MySqlCommand cmdGetRoom =
+                        new MySqlCommand(getRoomSql, conn, trans);
+                    cmdGetRoom.Parameters.AddWithValue("@cid", selectContractID);
+
+                    object roomObj = cmdGetRoom.ExecuteScalar();
+                    if (roomObj == null)
+                    {
+                        MessageBox.Show("Hợp đồng không tồn tại hoặc đã kết thúc!");
+                        trans.Rollback();
+                        return;
+                    }
+
+                    roomId = Convert.ToInt32(roomObj);
+
+                    // ===== 3. KẾT THÚC HỢP ĐỒNG =====
+                    string endContractSql =
+                        "UPDATE Contract SET is_active = 0 WHERE id = @cid";
+
+                    MySqlCommand cmdEndContract =
+                        new MySqlCommand(endContractSql, conn, trans);
+                    cmdEndContract.Parameters.AddWithValue("@cid", selectContractID);
+                    cmdEndContract.ExecuteNonQuery();
+
+                    // ===== 4. TRẢ PHÒNG =====
+                    string updateRoomSql =
+                        "UPDATE Room SET status = 'Trống', is_active = 1 WHERE id = @room";
+
+                    MySqlCommand cmdUpdateRoom =
+                        new MySqlCommand(updateRoomSql, conn, trans);
+                    cmdUpdateRoom.Parameters.AddWithValue("@room", roomId);
+                    cmdUpdateRoom.ExecuteNonQuery();
+
+                    trans.Commit();
+
+                    MessageBox.Show("Kết thúc hợp đồng thành công!");
+                    selectContractID = -1;
+                    oldRoomID = -1;
+                    contractLoad();
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn điều kiện lọc!");
+                return;
+            }
+
+            string filter = comboBox1.SelectedItem.ToString();
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+
+                string where = "";
+
+                if (filter == "Hợp đồng còn hạn")
+                {
+                    where = "AND c.is_active = 1 AND c.end_date >= CURDATE()";
+                }
+                else if (filter == "Hợp đồng sắp hết hạn")
+                {
+                    where = @"AND c.is_active = 1 
+                      AND c.end_date BETWEEN CURDATE() 
+                      AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)";
+                }
+                else if (filter == "Hợp đồng đã hết hạn")
+                {
+                    where = "AND c.is_active = 0";
+                }
+                // Tất cả hợp đồng → KHÔNG where thêm gì
+
+                string sql = $@"
+        SELECT 
+            c.id AS contract_id,
+            t.id AS tenant_id,
+            r.room_name,
+            c.start_date,
+            c.end_date,
+            c.price AS contract_price,
+            c.deposit,
+            t.full_name AS tenant_name,
+            t.id_card AS tenant_id_card,
+            t.phone AS tenant_phone,
+            t.address AS tenant_address,
+            ct.is_primary
+        FROM Contract c
+        JOIN Room r ON c.room_id = r.id
+        JOIN Contract_Tenant ct ON c.id = ct.contract_id
+        JOIN Tenant t ON ct.tenant_id = t.id
+        WHERE 
+            t.is_active = 1
+            {where}
+        ORDER BY c.end_date DESC";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
                 dgvlistViewContract.DataSource = dt;
             }
         }

@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using QuanLyPhongTro_1.Common;
 
 namespace QuanLyPhongTro_1
 {
     public partial class FormRoom : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = DbHelper.ConnectionString;
         public FormRoom()
         {
             InitializeComponent();
@@ -144,18 +145,38 @@ namespace QuanLyPhongTro_1
         {
             using (MySqlConnection conn = new MySqlConnection(str))
             {
-                try
-                {
-                    conn.Open();
-                    MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter("SELECT \r\n    r.*,\r\n    t.full_name AS tenant_name,\r\n    t.id_card\r\nFROM Room r\r\nLEFT JOIN Contract c \r\n    ON r.id = c.room_id \r\n    AND c.is_active = true\r\nLEFT JOIN Contract_Tenant ct \r\n    ON c.id = ct.contract_id\r\nLEFT JOIN Tenant t \r\n    ON ct.tenant_id = t.id \r\n    AND t.is_active = true;\r\n", conn);
-                    DataTable dt = new DataTable();
-                    sqlDataAdapter.Fill(dt);
-                    dgRoomLists.DataSource = dt;
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
+                conn.Open();
 
+                string sql = @"
+            SELECT 
+                r.id,
+                r.room_name,
+                r.price,
+                r.area,
+                r.status,
+                r.is_active,
+                t.full_name AS tenant_name,
+                t.id_card
+            FROM Room r
+            LEFT JOIN Contract c 
+                ON r.id = c.room_id 
+                AND c.is_active = 1
+            LEFT JOIN Contract_Tenant ct 
+                ON c.id = ct.contract_id 
+                AND ct.is_primary = 1
+            LEFT JOIN Tenant t 
+                ON ct.tenant_id = t.id 
+                AND t.is_active = 1
+            ORDER BY r.room_name
+        ";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgRoomLists.DataSource = dt;
+            }
         }
+
 
         public void FillCheckedListBox(CheckedListBox listBox, string query)
         {
@@ -188,7 +209,13 @@ namespace QuanLyPhongTro_1
             {
                 conn.Open();
 
-                string query = "INSERT INTO Room (room_name, price, area, status, is_active)VALUES(@room_name, @price, @area, @status,@is_active);SELECT LAST_INSERT_ID();";
+                string query = @"
+            INSERT INTO Room (room_name, price, area, status, is_active)
+            VALUES (@room_name, @price, @area, @status, 1);
+            SELECT LAST_INSERT_ID();
+        ";
+
+                int newRoomId;
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -196,39 +223,37 @@ namespace QuanLyPhongTro_1
                     cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(txtRoomRate.Text));
                     cmd.Parameters.AddWithValue("@area", Convert.ToInt32(txtArea.Text));
                     cmd.Parameters.AddWithValue("@status", cbStatus.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@is_active", 1);
-                    cmd.ExecuteNonQuery();
+
+                    // ❗ CHỈ GỌI 1 LẦN
                     newRoomId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
-                List<int> selectedServiceIds = new List<int>();
 
-                foreach (var item in clService.CheckedItems)
-                {
-                    ListItem li = item as ListItem;
-                    selectedServiceIds.Add(li.Value); // lấy service_id
-                }
-
+                // ===== INSERT ROOM_SERVICE =====
                 string insertMapping = "INSERT INTO Room_Service (room_id, service_id) VALUES (@roomId, @serviceId)";
                 using (MySqlCommand cmdMap = new MySqlCommand(insertMapping, conn))
                 {
                     cmdMap.Parameters.Add("@roomId", MySqlDbType.Int32);
                     cmdMap.Parameters.Add("@serviceId", MySqlDbType.Int32);
 
-                    foreach (int serviceId in selectedServiceIds)
+                    foreach (ListItem item in clService.CheckedItems)
                     {
                         cmdMap.Parameters["@roomId"].Value = newRoomId;
-                        cmdMap.Parameters["@serviceId"].Value = serviceId;
+                        cmdMap.Parameters["@serviceId"].Value = item.Value;
                         cmdMap.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Thêm phòng và dịch vụ thành công!");
-                txtArea.Clear();
-                txtRoomRate.Clear();
+
+                MessageBox.Show("Thêm phòng thành công!");
+
                 txtRoomName.Clear();
+                txtRoomRate.Clear();
+                txtArea.Clear();
                 cbIsActive.Checked = false;
-                //txtTenPhong.Clear();
+
+                loadData();
             }
         }
+
 
         private void LoadServicesForRoom(int roomId)
         {
@@ -384,30 +409,35 @@ namespace QuanLyPhongTro_1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult rs = MessageBox.Show("bạn muốn xóa dữ liệu của sách có mã id là " + selectID,
-            "confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (selectID <= 0) return;
+
+            DialogResult rs = MessageBox.Show(
+                "Bạn có chắc muốn ngưng sử dụng phòng này?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
             if (rs == DialogResult.Yes)
             {
                 using (MySqlConnection conn = new MySqlConnection(str))
                 {
                     conn.Open();
-                    MySqlCommand sqlCommand = new MySqlCommand("delete from Room where id = " + selectID, conn);
-                    sqlCommand.ExecuteNonQuery();
-                    string deleteMapping = "DELETE FROM Room_Service WHERE room_id=@roomId";
-                    using (MySqlCommand cmdDelete = new MySqlCommand(deleteMapping, conn))
+
+                    string sql = "UPDATE Room SET is_active = 0 WHERE id = @id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
-                        cmdDelete.Parameters.AddWithValue("@roomId", selectID);
-                        cmdDelete.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@id", selectID);
+                        cmd.ExecuteNonQuery();
                     }
-                    MessageBox.Show("xóa thành công");
-                    txtArea.Clear();
-                    txtRoomRate.Clear();
-                    txtRoomName.Clear();
-                    cbIsActive.Checked = false;
+
+                    MessageBox.Show("Đã ngưng sử dụng phòng!");
                     loadData();
                 }
             }
         }
+
 
         private void SearchRoomByName()
         {

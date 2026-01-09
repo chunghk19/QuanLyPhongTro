@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using QuanLyPhongTro_1.Common;
 
 namespace QuanLyPhongTro_1
 {
     public partial class FormService : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = DbHelper.ConnectionString;
         public FormService()
         {
             InitializeComponent();

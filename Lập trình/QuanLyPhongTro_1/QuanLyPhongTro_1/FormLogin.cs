@@ -17,7 +17,7 @@ namespace QuanLyPhongTro_1
 {
     public partial class FormLogin : Form
     {
-        string str = "Server=localhost;Port=3306;Database=Room_Management;Uid=root;Pwd=157359";
+        string str = DbHelper.ConnectionString;
         public FormLogin()
         {
             InitializeComponent();
