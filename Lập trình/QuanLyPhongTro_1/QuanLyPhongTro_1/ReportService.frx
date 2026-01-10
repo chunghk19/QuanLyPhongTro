@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.CreatorVersion="2026.1.0.0">
+	<Dictionary>
+		<!-- Parameter để hiển thị tiêu đề -->
+		<Parameter Name="ReportTitle" DataType="System.String" />
+
+		<!-- DataSource dịch vụ -->
+		<TableDataSource Name="Services" ReferenceName="Services">
+			<Column Name="service_name" DataType="System.String"/>
+			<Column Name="price" DataType="System.Decimal"/>
+		</TableDataSource>
+	</Dictionary>
+
+	<ReportPage Name="Page1"
+				PaperWidth="210"
+				PaperHeight="297"
+				LeftMargin="15"
+				RightMargin="15"
+				TopMargin="15"
+				BottomMargin="15">
+
+		<!-- Tiêu đề -->
+		<ReportTitleBand Name="ReportTitle1" Width="718" Height="50">
+			<TextObject Left="0" Top="10" Width="718" Height="30"
+						Text="[ReportTitle]"
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 16pt, style=Bold"/>
+			<TextObject Left="0" Top="40" Width="718" Height="15"
+						Text="Ngày in: [Date]"
+						HorzAlign="Right"
+						Font="Segoe UI, 10pt"/>
+		</ReportTitleBand>
+
+		<!-- Column header: chia đôi -->
+		<ColumnHeaderBand Name="ColumnHeader1" Height="25">
+			<TextObject Left="0" Top="0" Width="359" Height="25"
+						Border.Lines="All"
+						Text="Tên dịch vụ"
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="359" Top="0" Width="359" Height="25"
+						Border.Lines="All"
+						Text="Đơn giá"
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+		</ColumnHeaderBand>
+
+		<!-- DataBand: mỗi dòng dịch vụ, căn giữa -->
+		<DataBand Name="Data1" DataSource="Services" Height="25" CanGrow="true">
+			<TextObject Left="0" Top="0" Width="359" Height="25"
+						Border.Lines="All"
+						Text="[Services.service_name]"
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 10pt"
+						WordWrap="true"
+						CanGrow="true"/>
+			<TextObject Left="359" Top="0" Width="359" Height="25"
+						Border.Lines="All"
+						Text="[Services.price]"
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 10pt"
+						Format="Number"
+						Format.UseLocale="true"
+						CanGrow="true"/>
+		</DataBand>
+
+		<!-- Footer -->
+		<PageFooterBand Height="20">
+			<TextObject Left="0" Top="0" Width="718" Height="20"
+						Text="Trang [Page#] / [TotalPages#]"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt"/>
+		</PageFooterBand>
+
+	</ReportPage>
+</Report>

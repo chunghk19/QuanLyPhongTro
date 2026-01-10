@@ -28,7 +28,19 @@
     <Compile Update="FormRenewContract.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormReportContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormReportListTenant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormReportService.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormRoomReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormService.cs">

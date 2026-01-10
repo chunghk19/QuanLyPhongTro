@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.CreatorVersion="2026.1.0.0">
+
+	<!-- ================= DATA ================= -->
+	<Dictionary>
+		<TableDataSource Name="TenantRoom" ReferenceName="TenantRoom">
+			<Column Name="full_name" DataType="System.String"/>
+			<Column Name="phone" DataType="System.String"/>
+			<Column Name="id_card" DataType="System.String"/>
+			<Column Name="address" DataType="System.String"/>
+			<Column Name="room_name" DataType="System.String"/>
+			<Column Name="price" DataType="System.Decimal"/>
+			<Column Name="contract_status" DataType="System.String"/>
+		</TableDataSource>
+	</Dictionary>
+
+	<!-- ================= PAGE ================= -->
+	<ReportPage Name="Page1"
+                PaperWidth="210"
+                PaperHeight="297"
+                LeftMargin="15"
+                RightMargin="15"
+                TopMargin="15"
+                BottomMargin="15">
+
+		<!-- ================= TOP HEADER ================= -->
+		<PageHeaderBand Height="50">
+			<TextObject Left="0" Top="0" Width="718" Height="25"
+                        Text="BÁO CÁO DANH SÁCH KHÁCH THUÊ"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 14pt, style=Bold"/>
+			<TextObject Left="0" Top="28" Width="718" Height="18"
+                        Text="Ngày in: [Date]"
+                        HorzAlign="Right"
+                        Font="Segoe UI, 9pt"/>
+		</PageHeaderBand>
+
+		<!-- ================= COLUMN HEADER (tiêu đề bảng) ================= -->
+		<ColumnHeaderBand Name="ColumnHeader1" Height="25">
+			<TextObject Left="0" Top="0" Width="150" Height="25"
+                        Border.Lines="All"
+                        Text="Tên khách"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="150" Top="0" Width="90" Height="25"
+                        Border.Lines="All"
+                        Text="SĐT"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="240" Top="0" Width="100" Height="25"
+                        Border.Lines="All"
+                        Text="CCCD"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="340" Top="0" Width="180" Height="25"
+                        Border.Lines="All"
+                        Text="Địa chỉ"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="520" Top="0" Width="198" Height="25"
+                        Border.Lines="All"
+                        Text="Phòng thuê"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"/>
+			<!-- Ẩn 2 cột -->
+			<TextObject Left="718" Top="0" Width="0" Height="25"
+                        Border.Lines="All"
+                        Text="Giá thuê"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"
+                        Visible="false"/>
+			<TextObject Left="718" Top="0" Width="0" Height="25"
+                        Border.Lines="All"
+                        Text="HĐ còn hiệu lực"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt, style=Bold"
+                        Visible="false"/>
+		</ColumnHeaderBand>
+
+		<!-- ================= DATA BAND (hàng dữ liệu) ================= -->
+		<DataBand Name="Data1" Height="25" DataSource="TenantRoom" CanGrow="true">
+			<TextObject Left="0" Top="0" Width="150" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.full_name]"
+                        HorzAlign="Left"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"/>
+			<TextObject Left="150" Top="0" Width="90" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.phone]"
+                        HorzAlign="Left"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"/>
+			<TextObject Left="240" Top="0" Width="100" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.id_card]"
+                        HorzAlign="Left"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"/>
+			<TextObject Left="340" Top="0" Width="180" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.address]"
+                        HorzAlign="Left"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"/>
+			<TextObject Left="520" Top="0" Width="198" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.room_name]"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"/>
+			<!-- Ẩn 2 cột -->
+			<TextObject Left="718" Top="0" Width="0" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.price]"
+                        HorzAlign="Right"
+                        Format="Number"
+                        Format.UseLocale="true"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"
+                        Visible="false"/>
+			<TextObject Left="718" Top="0" Width="0" Height="25"
+                        Border.Lines="All"
+                        Text="[TenantRoom.contract_status]"
+                        HorzAlign="Center"
+                        Font="Segoe UI, 10pt"
+                        WordWrap="true"
+                        CanGrow="true"
+                        Visible="false"/>
+		</DataBand>
+
+		<!-- ================= FOOTER ================= -->
+		<PageFooterBand Height="20">
+			<TextObject Left="0" Top="0" Width="718" Height="20"
+                        Text="Trang [Page#] / [TotalPages#]"
+                        HorzAlign="Right"
+                        Font="Segoe UI, 9pt"/>
+		</PageFooterBand>
+
+	</ReportPage>
+</Report>

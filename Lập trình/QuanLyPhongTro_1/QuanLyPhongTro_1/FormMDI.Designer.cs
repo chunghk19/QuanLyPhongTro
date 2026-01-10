@@ -44,8 +44,10 @@
             lậpHóaĐơnToolStripMenuItem = new ToolStripMenuItem();
             thanhToánToolStripMenuItem = new ToolStripMenuItem();
             mnBaoCao = new ToolStripMenuItem();
-            côngNợToolStripMenuItem = new ToolStripMenuItem();
-            hợpĐồngQuáHạnToolStripMenuItem = new ToolStripMenuItem();
+            danhSáchPhòngToolStripMenuItem = new ToolStripMenuItem();
+            danhSáchKháchThuêToolStripMenuItem = new ToolStripMenuItem();
+            hợpĐồngToolStripMenuItem1 = new ToolStripMenuItem();
+            dịchVụToolStripMenuItem1 = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             lblUserInfo = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
@@ -146,43 +148,59 @@
             // ghiĐiệnNướcToolStripMenuItem
             // 
             ghiĐiệnNướcToolStripMenuItem.Name = "ghiĐiệnNướcToolStripMenuItem";
-            ghiĐiệnNướcToolStripMenuItem.Size = new Size(180, 22);
+            ghiĐiệnNướcToolStripMenuItem.Size = new Size(148, 22);
             ghiĐiệnNướcToolStripMenuItem.Text = "Ghi điện nước";
             ghiĐiệnNướcToolStripMenuItem.Click += ghiĐiệnNướcToolStripMenuItem_Click;
             // 
             // lậpHóaĐơnToolStripMenuItem
             // 
             lậpHóaĐơnToolStripMenuItem.Name = "lậpHóaĐơnToolStripMenuItem";
-            lậpHóaĐơnToolStripMenuItem.Size = new Size(180, 22);
+            lậpHóaĐơnToolStripMenuItem.Size = new Size(148, 22);
             lậpHóaĐơnToolStripMenuItem.Text = "Lập hóa đơn";
             lậpHóaĐơnToolStripMenuItem.Click += lậpHóaĐơnToolStripMenuItem_Click;
             // 
             // thanhToánToolStripMenuItem
             // 
             thanhToánToolStripMenuItem.Name = "thanhToánToolStripMenuItem";
-            thanhToánToolStripMenuItem.Size = new Size(180, 22);
+            thanhToánToolStripMenuItem.Size = new Size(148, 22);
             thanhToánToolStripMenuItem.Text = "Thanh toán";
             thanhToánToolStripMenuItem.Click += thanhToánToolStripMenuItem_Click;
             // 
             // mnBaoCao
             // 
-            mnBaoCao.DropDownItems.AddRange(new ToolStripItem[] { côngNợToolStripMenuItem, hợpĐồngQuáHạnToolStripMenuItem });
+            mnBaoCao.DropDownItems.AddRange(new ToolStripItem[] { danhSáchPhòngToolStripMenuItem, danhSáchKháchThuêToolStripMenuItem, hợpĐồngToolStripMenuItem1, dịchVụToolStripMenuItem1 });
             mnBaoCao.Image = Properties.Resources.icons8_bar_chart_50;
             mnBaoCao.Name = "mnBaoCao";
             mnBaoCao.Size = new Size(87, 28);
             mnBaoCao.Text = "Báo Cáo";
             // 
-            // côngNợToolStripMenuItem
+            // danhSáchPhòngToolStripMenuItem
             // 
-            côngNợToolStripMenuItem.Name = "côngNợToolStripMenuItem";
-            côngNợToolStripMenuItem.Size = new Size(174, 22);
-            côngNợToolStripMenuItem.Text = "Công nợ";
+            danhSáchPhòngToolStripMenuItem.Name = "danhSáchPhòngToolStripMenuItem";
+            danhSáchPhòngToolStripMenuItem.Size = new Size(191, 22);
+            danhSáchPhòngToolStripMenuItem.Text = "Danh sách phòng";
+            danhSáchPhòngToolStripMenuItem.Click += danhSáchPhòngToolStripMenuItem_Click;
             // 
-            // hợpĐồngQuáHạnToolStripMenuItem
+            // danhSáchKháchThuêToolStripMenuItem
             // 
-            hợpĐồngQuáHạnToolStripMenuItem.Name = "hợpĐồngQuáHạnToolStripMenuItem";
-            hợpĐồngQuáHạnToolStripMenuItem.Size = new Size(174, 22);
-            hợpĐồngQuáHạnToolStripMenuItem.Text = "Hợp đồng quá hạn";
+            danhSáchKháchThuêToolStripMenuItem.Name = "danhSáchKháchThuêToolStripMenuItem";
+            danhSáchKháchThuêToolStripMenuItem.Size = new Size(191, 22);
+            danhSáchKháchThuêToolStripMenuItem.Text = "Danh sách khách thuê";
+            danhSáchKháchThuêToolStripMenuItem.Click += danhSáchKháchThuêToolStripMenuItem_Click;
+            // 
+            // hợpĐồngToolStripMenuItem1
+            // 
+            hợpĐồngToolStripMenuItem1.Name = "hợpĐồngToolStripMenuItem1";
+            hợpĐồngToolStripMenuItem1.Size = new Size(191, 22);
+            hợpĐồngToolStripMenuItem1.Text = "Hợp đồng";
+            hợpĐồngToolStripMenuItem1.Click += hợpĐồngToolStripMenuItem1_Click;
+            // 
+            // dịchVụToolStripMenuItem1
+            // 
+            dịchVụToolStripMenuItem1.Name = "dịchVụToolStripMenuItem1";
+            dịchVụToolStripMenuItem1.Size = new Size(191, 22);
+            dịchVụToolStripMenuItem1.Text = "Dịch vụ";
+            dịchVụToolStripMenuItem1.Click += dịchVụToolStripMenuItem1_Click;
             // 
             // statusStrip1
             // 
@@ -243,9 +261,11 @@
         private ToolStripMenuItem lậpHóaĐơnToolStripMenuItem;
         private ToolStripMenuItem thanhToánToolStripMenuItem;
         private ToolStripMenuItem mnBaoCao;
-        private ToolStripMenuItem côngNợToolStripMenuItem;
-        private ToolStripMenuItem hợpĐồngQuáHạnToolStripMenuItem;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lblUserInfo;
+        private ToolStripMenuItem danhSáchPhòngToolStripMenuItem;
+        private ToolStripMenuItem danhSáchKháchThuêToolStripMenuItem;
+        private ToolStripMenuItem hợpĐồngToolStripMenuItem1;
+        private ToolStripMenuItem dịchVụToolStripMenuItem1;
     }
 }

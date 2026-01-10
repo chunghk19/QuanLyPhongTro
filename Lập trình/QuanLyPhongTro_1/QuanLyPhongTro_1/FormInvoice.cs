@@ -3,16 +3,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using FastReport.Export.PdfSimple;
+using FastReport;
 using MySql.Data.MySqlClient;
 using QuanLyPhongTro_1.Common;
-
-// iText7 namespaces
-//using iText.Kernel.Pdf;
-//using iText.Layout;
-//using iText.Layout.Element;
-//using iText.Layout.Properties;
-//using iText.Kernel.Font;
-//using iText.IO.Font.Constants;
+using System.IO;
 
 namespace QuanLyPhongTro_1
 {
@@ -24,6 +19,9 @@ namespace QuanLyPhongTro_1
         Button btnCreate, btnExportPDF;
         DataGridView dgvInvoices;
         TableLayoutPanel tlpMain;
+
+        // ---------- Biến lưu hóa đơn hiện tại ----------
+        DataTable currentInvoiceData;
 
         public FormInvoice()
         {
@@ -143,6 +141,7 @@ namespace QuanLyPhongTro_1
                 Font = new Font("Segoe UI", 9, FontStyle.Regular),
                 Margin = new Padding(0)
             };
+            btnExportPDF.Click += BtnExportPDF_Click;
 
             pnlButtons.Controls.Add(btnCreate);
             pnlButtons.Controls.Add(btnExportPDF);
@@ -183,91 +182,8 @@ namespace QuanLyPhongTro_1
             tlpInvoice.Controls.Add(dgvInvoices, 0, 1);
             gbInvoice.Controls.Add(tlpInvoice);
             tlpMain.Controls.Add(gbInvoice, 1, 0);
-
-            // --- Gắn sự kiện xuất PDF ---
-            //btnExportPDF.Click += BtnExportPDF_Click;
         }
 
-        // ---------------------- HÀM XUẤT PDF iText7 ----------------------
-        //private void BtnExportPDF_Click(object sender, EventArgs e)
-        //{
-        //    if (dgvInvoices.SelectedRows.Count == 0)
-        //    {
-        //        MessageBox.Show("Vui lòng chọn một hóa đơn để xuất PDF");
-        //        return;
-        //    }
-
-        //    var row = dgvInvoices.SelectedRows[0];
-        //    string roomName = row.Cells["Phòng"].Value?.ToString();
-        //    string tenantName = row.Cells["Người thuê"].Value?.ToString();
-        //    string month = row.Cells["Tháng"].Value?.ToString();
-        //    string year = row.Cells["Năm"].Value?.ToString();
-        //    string roomPrice = row.Cells["Tiền phòng"].Value?.ToString();
-        //    string electric = row.Cells["Tiền điện"].Value?.ToString();
-        //    string water = row.Cells["Tiền nước"].Value?.ToString();
-        //    string service = row.Cells["Dịch vụ"].Value?.ToString();
-        //    string other = row.Cells["Chi phí khác"].Value?.ToString();
-        //    string total = row.Cells["Tổng tiền"].Value?.ToString();
-        //    string status = row.Cells["Trạng thái"].Value?.ToString();
-
-        //    string fileName = $"Invoice_{roomName}_{month}_{year}.pdf";
-
-        //    using (SaveFileDialog sfd = new SaveFileDialog()
-        //    {
-        //        Filter = "PDF Files|*.pdf",
-        //        FileName = fileName
-        //    })
-        //    {
-        //        if (sfd.ShowDialog() != DialogResult.OK) return;
-
-        //        try
-        //        {
-        //            using var writer = new PdfWriter(sfd.FileName);
-        //            using var pdf = new PdfDocument(writer);
-        //            var document = new Document(pdf);
-
-        //            var titleFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-        //            var title = new Paragraph("HÓA ĐƠN TIỀN PHÒNG")
-        //                        .SetFont(titleFont)
-        //                        .SetFontSize(18)
-        //                        .SetTextAlignment(TextAlignment.CENTER);
-        //            document.Add(title);
-
-        //            document.Add(new Paragraph($"Phòng: {roomName}"));
-        //            document.Add(new Paragraph($"Người thuê: {tenantName}"));
-        //            document.Add(new Paragraph($"Tháng / Năm: {month}/{year}"));
-        //            document.Add(new Paragraph($"Trạng thái: {status}"));
-        //            document.Add(new Paragraph(" "));
-
-        //            var table = new Table(2).UseAllAvailableWidth();
-        //            table.AddCell("Chi phí");
-        //            table.AddCell("Số tiền (VNĐ)");
-
-        //            table.AddCell("Tiền phòng"); table.AddCell(roomPrice);
-        //            table.AddCell("Tiền điện"); table.AddCell(electric);
-        //            table.AddCell("Tiền nước"); table.AddCell(water);
-        //            table.AddCell("Dịch vụ"); table.AddCell(service);
-        //            table.AddCell("Chi phí khác"); table.AddCell(other);
-        //            table.AddCell("Tổng cộng"); table.AddCell(total);
-
-        //            document.Add(table);
-
-        //            document.Add(new Paragraph(" "));
-        //            document.Add(new Paragraph("Người lập hóa đơn")
-        //                .SetTextAlignment(TextAlignment.RIGHT));
-
-        //            document.Close();
-
-        //            MessageBox.Show("Xuất PDF thành công!");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Lỗi khi xuất PDF: " + ex.Message);
-        //        }
-        //    }
-        //}
-
-        // ---------------------- CÁC HÀM CŨ GIỮ NGUYÊN ----------------------
         void LoadRooms()
         {
             string sql = @"
@@ -512,6 +428,30 @@ namespace QuanLyPhongTro_1
         {
             if (e.RowIndex < 0) return;
             DataGridViewRow row = dgvInvoices.Rows[e.RowIndex];
+
+            int invoiceId = Convert.ToInt32(row.Cells["id"].Value);
+
+            // Lấy dữ liệu hóa đơn từ DB
+            string sql = @"
+                SELECT i.id, r.room_name, t.full_name AS tenant_name,
+                       i.month, i.year, i.room_price, i.electric_cost, i.water_cost,
+                       i.service_cost, i.other_cost, i.total_cost, i.paid_amount, i.status
+                FROM Invoice i
+                JOIN Contract c ON i.contract_id = c.id
+                JOIN Room r ON c.room_id = r.id
+                JOIN Contract_Tenant ct ON ct.contract_id = c.id AND ct.is_primary=1
+                JOIN Tenant t ON ct.tenant_id = t.id
+                WHERE i.id=@id";
+
+            using (var conn = DbHelper.GetConnection())
+            using (var cmd = new MySqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", invoiceId);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                currentInvoiceData = new DataTable();
+                da.Fill(currentInvoiceData);
+            }
+
             int roomId = GetRoomIdByName(row.Cells["Phòng"].Value.ToString());
             if (roomId > 0)
             {
@@ -556,5 +496,61 @@ namespace QuanLyPhongTro_1
             }
             return 0;
         }
+
+        // ---------- Xuất PDF / mở FormReport ----------
+        private void BtnExportPDF_Click(object sender, EventArgs e)
+        {
+            if (currentInvoiceData == null || currentInvoiceData.Rows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một hóa đơn trong danh sách trước khi xuất PDF");
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "PDF File (*.pdf)|*.pdf",
+                FileName = "HoaDon.pdf"
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                Report report = new Report();
+
+                // Đường dẫn file frx
+                string reportPath = Path.Combine(Application.StartupPath, "ReportInvoice.frx");
+                if (!File.Exists(reportPath))
+                {
+                    MessageBox.Show("Không tìm thấy file ReportInvoice.frx");
+                    return;
+                }
+
+                // Load report
+                report.Load(reportPath);
+
+                // Đổ DataTable vào report
+                report.RegisterData(currentInvoiceData, "Invoice");
+                report.GetDataSource("Invoice").Enabled = true;
+
+                // BẮT BUỘC
+                report.Prepare();
+
+                // Xuất PDF
+                using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
+                {
+                    PDFSimpleExport pdf = new PDFSimpleExport();
+                    report.Export(pdf, fs);
+                }
+
+                MessageBox.Show("Xuất PDF thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xuất PDF:\n" + ex.Message);
+            }
+        }
+
     }
 }

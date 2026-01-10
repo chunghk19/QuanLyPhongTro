@@ -242,5 +242,38 @@ namespace QuanLyPhongTro_1
             fr.MdiParent = this;
             fr.Show();
         }
+
+        private void dsroomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void danhSáchPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormRoomReport fr = new FormRoomReport();
+            fr.MdiParent = this;
+            fr.Show();
+        }
+
+        private void danhSáchKháchThuêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormReportListTenant fr = new FormReportListTenant();
+            fr.MdiParent = this;
+            fr.Show();
+        }
+
+        private void hợpĐồngToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormReportContract fr = new FormReportContract();
+            fr.MdiParent = this;
+            fr.Show();
+        }
+
+        private void dịchVụToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormReportService fr = new FormReportService();
+            fr.MdiParent = this;
+            fr.Show();
+        }
     }
 }

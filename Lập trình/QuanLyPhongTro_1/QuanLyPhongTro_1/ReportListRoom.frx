@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.CreatorVersion="2026.1.0.0">
+
+	<!-- ================= DATA ================= -->
+	<Dictionary>
+		<TableDataSource Name="Room" ReferenceName="Room">
+			<Column Name="room_name" DataType="System.String"/>
+			<Column Name="price" DataType="System.Decimal"/>
+			<Column Name="area" DataType="System.String"/>
+			<Column Name="status" DataType="System.String"/>
+		</TableDataSource>
+	</Dictionary>
+
+	<!-- ================= PAGE ================= -->
+	<ReportPage Name="Page1"
+				PaperWidth="210"
+				PaperHeight="297"
+				LeftMargin="15"
+				RightMargin="15"
+				TopMargin="15"
+				BottomMargin="15">
+
+		<!-- ================= TOP HEADER ================= -->
+		<PageHeaderBand Height="50">
+			<TextObject Left="0" Top="0" Width="718" Height="25"
+						Text="BÁO CÁO DANH SÁCH PHÒNG"
+						HorzAlign="Center"
+						Font="Segoe UI, 14pt, style=Bold"/>
+			<TextObject Left="0" Top="28" Width="718" Height="18"
+						Text="Ngày in: [Date]"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt"/>
+		</PageHeaderBand>
+
+		<!-- ================= COLUMN HEADER ================= -->
+		<ColumnHeaderBand Name="ColumnHeader1" Height="25">
+			<TextObject Left="0" Top="0" Width="250" Height="25"
+						Border.Lines="All"
+						Text="Tên phòng"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="250" Top="0" Width="150" Height="25"
+						Border.Lines="All"
+						Text="Giá (VNĐ)"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="400" Top="0" Width="150" Height="25"
+						Border.Lines="All"
+						Text="Diện tích"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="550" Top="0" Width="168" Height="25"
+						Border.Lines="All"
+						Text="Trạng thái"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+		</ColumnHeaderBand>
+
+		<!-- ================= DATA BAND ================= -->
+		<DataBand Name="Data1" Height="25" DataSource="Room">
+			<TextObject Left="0" Top="0" Width="250" Height="25"
+						Border.Lines="All"
+						Text="[Room.room_name]"
+						HorzAlign="Left"
+						Font="Segoe UI, 10pt"/>
+			<TextObject Left="250" Top="0" Width="150" Height="25"
+						Border.Lines="All"
+						Text="[Room.price]"
+						HorzAlign="Right"
+						Format="Number"
+						Format.UseLocale="true"
+						Font="Segoe UI, 10pt"/>
+			<TextObject Left="400" Top="0" Width="150" Height="25"
+						Border.Lines="All"
+						Text="[Room.area]"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt"/>
+			<TextObject Left="550" Top="0" Width="168" Height="25"
+						Border.Lines="All"
+						Text="[Room.status]"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt"/>
+		</DataBand>
+
+		<!-- ================= FOOTER ================= -->
+		<PageFooterBand Height="20">
+			<TextObject Left="0" Top="0" Width="718" Height="20"
+						Text="Trang [Page#] / [TotalPages#]"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt"/>
+		</PageFooterBand>
+
+	</ReportPage>
+</Report>
