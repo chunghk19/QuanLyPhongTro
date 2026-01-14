@@ -34,7 +34,6 @@
             txtCCCD = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            btnAdd = new Button();
             txtSearch = new TextBox();
             label2 = new Label();
             txtFullName = new TextBox();
@@ -45,6 +44,7 @@
             txtPhoneNumber = new TextBox();
             btnSearch = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
+            btnAdd = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgTenants).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -53,10 +53,9 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(13, 6);
-            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Location = new Point(19, 10);
             label5.Name = "label5";
-            label5.Size = new Size(130, 15);
+            label5.Size = new Size(194, 25);
             label5.TabIndex = 0;
             label5.Text = "Danh sách khách hàng:";
             // 
@@ -64,20 +63,18 @@
             // 
             panel1.Controls.Add(dgTenants);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(33, 218);
-            panel1.Margin = new Padding(2);
+            panel1.Location = new Point(47, 363);
             panel1.Name = "panel1";
-            panel1.Size = new Size(530, 248);
+            panel1.Size = new Size(757, 413);
             panel1.TabIndex = 16;
             // 
             // dgTenants
             // 
             dgTenants.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgTenants.Location = new Point(19, 29);
-            dgTenants.Margin = new Padding(2);
+            dgTenants.Location = new Point(27, 48);
             dgTenants.Name = "dgTenants";
             dgTenants.RowHeadersWidth = 62;
-            dgTenants.Size = new Size(509, 219);
+            dgTenants.Size = new Size(727, 365);
             dgTenants.TabIndex = 1;
             dgTenants.CellClick += dgTenants_CellClick;
             // 
@@ -85,20 +82,19 @@
             // 
             tableLayoutPanel1.SetColumnSpan(txtCCCD, 3);
             txtCCCD.Dock = DockStyle.Bottom;
-            txtCCCD.Location = new Point(99, 77);
-            txtCCCD.Margin = new Padding(2);
+            txtCCCD.Location = new Point(142, 137);
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(430, 23);
+            txtCCCD.Size = new Size(614, 31);
             txtCCCD.TabIndex = 6;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(14, 155);
-            label3.Margin = new Padding(14, 0, 2, 0);
+            label3.Location = new Point(20, 260);
+            label3.Margin = new Padding(20, 0, 3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(28, 15);
+            label3.Size = new Size(44, 25);
             label3.TabIndex = 2;
             label3.Text = "SĐT";
             // 
@@ -106,44 +102,31 @@
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(14, 121);
-            label4.Margin = new Padding(14, 0, 2, 0);
+            label4.Location = new Point(20, 203);
+            label4.Margin = new Padding(20, 0, 3, 0);
             label4.Name = "label4";
-            label4.Size = new Size(43, 15);
+            label4.Size = new Size(65, 25);
             label4.TabIndex = 3;
             label4.Text = "Địa chỉ";
-            // 
-            // btnAdd
-            // 
-            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAdd.BackColor = Color.PowderBlue;
-            btnAdd.Location = new Point(99, 172);
-            btnAdd.Margin = new Padding(2);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(72, 33);
-            btnAdd.TabIndex = 12;
-            btnAdd.Text = "Thêm KH";
-            btnAdd.UseVisualStyleBackColor = false;
             // 
             // txtSearch
             // 
             tableLayoutPanel1.SetColumnSpan(txtSearch, 3);
             txtSearch.Dock = DockStyle.Bottom;
-            txtSearch.Location = new Point(99, 9);
-            txtSearch.Margin = new Padding(2);
+            txtSearch.Location = new Point(142, 23);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Nhập tên hoặc số điện thoại.....";
-            txtSearch.Size = new Size(430, 23);
+            txtSearch.Size = new Size(614, 31);
             txtSearch.TabIndex = 4;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
-            label2.Location = new Point(14, 87);
-            label2.Margin = new Padding(14, 0, 2, 0);
+            label2.Location = new Point(20, 146);
+            label2.Margin = new Padding(20, 0, 3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(58, 25);
             label2.TabIndex = 1;
             label2.Text = "CCCD";
             // 
@@ -151,20 +134,18 @@
             // 
             tableLayoutPanel1.SetColumnSpan(txtFullName, 3);
             txtFullName.Dock = DockStyle.Bottom;
-            txtFullName.Location = new Point(99, 43);
-            txtFullName.Margin = new Padding(2);
+            txtFullName.Location = new Point(142, 80);
             txtFullName.Name = "txtFullName";
-            txtFullName.Size = new Size(430, 23);
+            txtFullName.Size = new Size(614, 31);
             txtFullName.TabIndex = 5;
             // 
             // btnUpdate
             // 
             btnUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnUpdate.BackColor = Color.Gold;
-            btnUpdate.Location = new Point(188, 172);
-            btnUpdate.Margin = new Padding(2);
+            btnUpdate.Location = new Point(270, 288);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(162, 33);
+            btnUpdate.Size = new Size(231, 54);
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "Cập Nhập Thông Tin KH";
             btnUpdate.UseVisualStyleBackColor = false;
@@ -174,10 +155,10 @@
             // 
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new Point(12, 53);
-            label1.Margin = new Padding(12, 0, 2, 0);
+            label1.Location = new Point(17, 89);
+            label1.Margin = new Padding(17, 0, 3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(58, 15);
+            label1.Size = new Size(89, 25);
             label1.TabIndex = 0;
             label1.Text = "Họ và tên";
             // 
@@ -185,20 +166,18 @@
             // 
             tableLayoutPanel1.SetColumnSpan(txtAddress, 3);
             txtAddress.Dock = DockStyle.Bottom;
-            txtAddress.Location = new Point(99, 111);
-            txtAddress.Margin = new Padding(2);
+            txtAddress.Location = new Point(142, 194);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(430, 23);
+            txtAddress.Size = new Size(614, 31);
             txtAddress.TabIndex = 7;
             // 
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.Salmon;
-            btnDelete.Location = new Point(369, 172);
-            btnDelete.Margin = new Padding(2);
+            btnDelete.Location = new Point(529, 288);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(72, 33);
+            btnDelete.Size = new Size(103, 54);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Xóa KH";
             btnDelete.UseVisualStyleBackColor = false;
@@ -207,19 +186,17 @@
             // 
             txtPhoneNumber.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             tableLayoutPanel1.SetColumnSpan(txtPhoneNumber, 2);
-            txtPhoneNumber.Location = new Point(99, 145);
-            txtPhoneNumber.Margin = new Padding(2);
+            txtPhoneNumber.Location = new Point(142, 251);
             txtPhoneNumber.Name = "txtPhoneNumber";
-            txtPhoneNumber.Size = new Size(247, 23);
+            txtPhoneNumber.Size = new Size(351, 31);
             txtPhoneNumber.TabIndex = 8;
             // 
             // btnSearch
             // 
             btnSearch.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnSearch.Location = new Point(2, 12);
-            btnSearch.Margin = new Padding(2);
+            btnSearch.Location = new Point(3, 21);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(79, 20);
+            btnSearch.Size = new Size(113, 33);
             btnSearch.TabIndex = 0;
             btnSearch.Text = "Tìm kiếm";
             btnSearch.UseVisualStyleBackColor = true;
@@ -245,8 +222,7 @@
             tableLayoutPanel1.Controls.Add(label4, 0, 3);
             tableLayoutPanel1.Controls.Add(label3, 0, 4);
             tableLayoutPanel1.Controls.Add(txtCCCD, 1, 2);
-            tableLayoutPanel1.Location = new Point(33, 8);
-            tableLayoutPanel1.Margin = new Padding(2);
+            tableLayoutPanel1.Location = new Point(47, 13);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 6;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
@@ -255,17 +231,27 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Size = new Size(531, 207);
+            tableLayoutPanel1.Size = new Size(759, 345);
             tableLayoutPanel1.TabIndex = 15;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAdd.BackColor = Color.PowderBlue;
+            btnAdd.Location = new Point(142, 288);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(103, 54);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Thêm KH";
+            btnAdd.UseVisualStyleBackColor = false;
             // 
             // FormTenant
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(597, 484);
+            ClientSize = new Size(853, 807);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(2);
             Name = "FormTenant";
             Text = "FormTenant";
             panel1.ResumeLayout(false);
@@ -291,8 +277,8 @@
         private TextBox txtFullName;
         private Label label2;
         private TextBox txtSearch;
-        private Button btnAdd;
         private Label label4;
         private Label label3;
+        private Button btnAdd;
     }
 }

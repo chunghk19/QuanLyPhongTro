@@ -57,6 +57,7 @@ namespace QuanLyPhongTro_1
                 using MySqlConnection conn = new MySqlConnection(connStr);
                 string sql = @"
                     SELECT 
+                        id,
                         room_name,
                         price,
                         area,
@@ -72,6 +73,11 @@ namespace QuanLyPhongTro_1
                 data.TableName = "Room";
 
                 dgvRoom.DataSource = data;
+                dgvRoom.Columns["id"].HeaderText = "Mã phòng";
+                dgvRoom.Columns["room_name"].HeaderText = "Tên phòng";
+                dgvRoom.Columns["price"].HeaderText = "Giá phòng";
+                dgvRoom.Columns["area"].HeaderText = "Diện tích (m²)";
+                dgvRoom.Columns["status"].HeaderText = "Trạng thái";
             }
             catch (Exception ex)
             {

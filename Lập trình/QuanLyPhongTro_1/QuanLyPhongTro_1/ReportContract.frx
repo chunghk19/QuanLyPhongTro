@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.CreatorVersion="2026.1.0.0">
+<Report ScriptLanguage="CSharp">
 	<Dictionary>
 		<TableDataSource Name="Contracts" ReferenceName="Contracts">
 			<Column Name="contract_id" DataType="System.Int32"/>
@@ -16,66 +16,90 @@
 	</Dictionary>
 
 	<ReportPage Name="Page1" PaperWidth="210" PaperHeight="297"
-				LeftMargin="15" RightMargin="15" TopMargin="15" BottomMargin="15">
+	            LeftMargin="15" RightMargin="15" TopMargin="15" BottomMargin="15">
 
-		<!-- Header: Logo bên trái, thông tin nhóm + khoa bên dưới -->
-		<PageHeaderBand Name="PageHeader1" Height="60">
-			<PictureObject Left="0" Top="0" Width="60" Height="60"
-						   File="logo.png"
-						   Sizing="Fit"/>
-			<TextObject Left="70" Top="0" Width="628" Height="25"
-						Text="Nhóm 1 - Khoa UDPM, Khoa Công nghệ thông tin"
-						Font="Segoe UI, 12pt, style=Bold"
-						HorzAlign="Left"
-						VertAlign="Center"/>
-			<TextObject Left="70" Top="30" Width="628" Height="20"
-						Text="Ngày in: [Date]"
-						Font="Segoe UI, 10pt"
-						HorzAlign="Right"
-						VertAlign="Center"/>
+		<!-- HEADER -->
+		<PageHeaderBand Height="90">
+
+			<!-- Trái -->
+			<TextObject Left="0" Top="0" Width="350" Height="30"
+			            Text="HỆ THỐNG NHÀ TRỌ HACTECH"
+			            Font="Segoe UI, 13pt, style=Bold"/>
+
+			<!-- Phải -->
+			<TextObject Left="360" Top="0" Width="350" Height="40"
+			            Text="CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&#13;&#10;Độc lập - Tự do - Hạnh phúc"
+			            Font="Segoe UI, 11pt, style=Bold"
+			            HorzAlign="Center"/>
+
+			<!-- Tên báo cáo -->
+			<TextObject Left="0" Top="50" Width="710" Height="30"
+			            Text="BÁO CÁO HỢP ĐỒNG THUÊ PHÒNG"
+			            Font="Segoe UI, 16pt, style=Bold"
+			            HorzAlign="Center"/>
 		</PageHeaderBand>
 
-		<!-- Footer: ký tên + số trang -->
-		<PageFooterBand Name="PageFooter1" Top="270" Width="718.2" Height="30">
-			<TextObject Left="0" Top="0" Width="718.2" Height="30"
-						Text="Chủ trọ ký ____________          Khách thuê ký ____________          Trang [Page#] / [TotalPages#]"
-						Font="Segoe UI, 12pt"
-						HorzAlign="Center"
-						VertAlign="Center"/>
-		</PageFooterBand>
+		<!-- BODY -->
+		<DataBand Name="Data1" DataSource="Contracts" StartNewPage="true" Height="260">
 
-		<!-- DataBand: mỗi hợp đồng 1 trang -->
-		<DataBand Name="Data1" Top="0" Width="718.2" Height="300" DataSource="Contracts"
-				  CanGrow="true" StartNewPage="true">
+			<RectangleObject Left="0" Top="0" Width="710" Height="250" Border.Lines="All"/>
 
-			<!-- Viền ngoài hợp đồng -->
-			<RectangleObject Left="0" Top="0" Width="718.2" Height="300" Border.Lines="All"/>
+			<TextObject Left="20" Top="20" Width="330" Height="25"
+			            Text="Tên khách thuê: [Contracts.full_name]"
+			            Font="Segoe UI, 12pt"/>
 
-			<!-- Tiêu đề hợp đồng -->
-			<TextObject Left="0" Top="10" Width="718.2" Height="40"
-						Text="HỢP ĐỒNG THUÊ PHÒNG"
-						Font="Segoe UI, 16pt, style=Bold"
-						HorzAlign="Center"
-						VertAlign="Center"/>
+			<TextObject Left="370" Top="20" Width="320" Height="25"
+			            Text="SĐT: [Contracts.phone]"
+			            Font="Segoe UI, 12pt"/>
 
-			<!-- Thông tin hợp đồng căn chỉnh hai lề -->
-			<TextObject Left="20" Top="60" Width="340" Height="25" Text="Tên khách: [Contracts.full_name]" Font="Segoe UI, 14pt" CanGrow="true"/>
-			<TextObject Left="380" Top="60" Width="318" Height="25" Text="SĐT: [Contracts.phone]" Font="Segoe UI, 14pt" CanGrow="true"/>
+			<TextObject Left="20" Top="55" Width="330" Height="25"
+			            Text="CCCD: [Contracts.id_card]"
+			            Font="Segoe UI, 12pt"/>
 
-			<TextObject Left="20" Top="95" Width="340" Height="25" Text="CCCD: [Contracts.id_card]" Font="Segoe UI, 14pt" CanGrow="true"/>
-			<TextObject Left="380" Top="95" Width="318" Height="25" Text="Phòng thuê: [Contracts.room_name]" Font="Segoe UI, 14pt" CanGrow="true"/>
+			<TextObject Left="370" Top="55" Width="320" Height="25"
+			            Text="Phòng thuê: [Contracts.room_name]"
+			            Font="Segoe UI, 12pt"/>
 
-			<TextObject Left="20" Top="130" Width="678" Height="35" Text="Địa chỉ: [Contracts.address]" Font="Segoe UI, 14pt" CanGrow="true" WordWrap="true"/>
+			<TextObject Left="20" Top="90" Width="670" Height="35"
+			            Text="Địa chỉ: [Contracts.address]"
+			            Font="Segoe UI, 12pt"
+			            WordWrap="true"/>
 
-			<TextObject Left="20" Top="170" Width="340" Height="25" Text="Ngày bắt đầu: [Contracts.start_date]" Font="Segoe UI, 14pt" CanGrow="true"/>
-			<TextObject Left="380" Top="170" Width="318" Height="25" Text="Ngày kết thúc: [Contracts.end_date]" Font="Segoe UI, 14pt" CanGrow="true"/>
+			<TextObject Left="20" Top="135" Width="330" Height="25"
+			            Text="Ngày bắt đầu: [Contracts.start_date]"
+			            Font="Segoe UI, 12pt"/>
 
-			<TextObject Left="20" Top="205" Width="340" Height="25" Text="Tiền đặt cọc: [Contracts.deposit]" Font="Segoe UI, 14pt" CanGrow="true"/>
-			<TextObject Left="380" Top="205" Width="318" Height="25" Text="Giá thuê: [Contracts.room_price]" Font="Segoe UI, 14pt" CanGrow="true"/>
+			<TextObject Left="370" Top="135" Width="320" Height="25"
+			            Text="Ngày kết thúc: [Contracts.end_date]"
+			            Font="Segoe UI, 12pt"/>
 
-			<!-- Nét phân cách -->
-			<LineObject Left="20" Top="240" Width="678" Height="1" Border.Lines="Bottom"/>
+			<TextObject Left="20" Top="170" Width="330" Height="25"
+			            Text="Tiền đặt cọc: [Contracts.deposit]"
+			            Font="Segoe UI, 12pt"/>
+
+			<TextObject Left="370" Top="170" Width="320" Height="25"
+			            Text="Giá thuê: [Contracts.room_price]"
+			            Font="Segoe UI, 12pt"/>
 		</DataBand>
+
+		<!-- ================= FOOTER ================= -->
+		<!-- ================= REPORT SUMMARY (CHỮ KÝ) ================= -->
+		<ReportSummaryBand Height="80">
+
+			<TextObject Left="420" Top="10" Width="280" Height="40"
+						Text="Người lập báo cáo&#13;&#10;(Ký và ghi rõ họ tên)"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt"/>
+
+		</ReportSummaryBand>
+
+		<!-- ================= FOOTER (CHỈ CÒN SỐ TRANG) ================= -->
+		<PageFooterBand Height="20">
+			<TextObject Left="0" Top="0" Width="710" Height="20"
+						Text="Trang [Page#] / [TotalPages#]"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt"/>
+		</PageFooterBand>
 
 	</ReportPage>
 </Report>

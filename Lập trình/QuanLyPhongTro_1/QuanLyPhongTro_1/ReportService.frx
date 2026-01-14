@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report ScriptLanguage="CSharp" ReportInfo.CreatorVersion="2026.1.0.0">
+
+	<!-- ================= DATA ================= -->
 	<Dictionary>
-		<!-- Parameter để hiển thị tiêu đề -->
 		<Parameter Name="ReportTitle" DataType="System.String" />
 
-		<!-- DataSource dịch vụ -->
 		<TableDataSource Name="Services" ReferenceName="Services">
 			<Column Name="service_name" DataType="System.String"/>
 			<Column Name="price" DataType="System.Decimal"/>
 		</TableDataSource>
 	</Dictionary>
 
+	<!-- ================= PAGE ================= -->
 	<ReportPage Name="Page1"
 				PaperWidth="210"
 				PaperHeight="297"
@@ -19,45 +20,59 @@
 				TopMargin="15"
 				BottomMargin="15">
 
-		<!-- Tiêu đề -->
-		<ReportTitleBand Name="ReportTitle1" Width="718" Height="50">
-			<TextObject Left="0" Top="10" Width="718" Height="30"
+		<!-- ================= HEADER ================= -->
+		<PageHeaderBand Height="60">
+
+			<!-- Trái -->
+			<TextObject Left="0" Top="0" Width="350" Height="20"
+						Text="Hệ thống nhà trọ Hactech"
+						Font="Segoe UI, 10pt, style=Bold"/>
+
+			<!-- Phải -->
+			<TextObject Left="368" Top="0" Width="350" Height="18"
+						Text="Cộng hòa xã hội chủ nghĩa Việt Nam"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt, style=Bold"/>
+
+			<TextObject Left="368" Top="18" Width="350" Height="18"
+						Text="Độc lập - Tự do - Hạnh phúc"
+						HorzAlign="Right"
+						Font="Segoe UI, 9pt"/>
+
+			<!-- Tên báo cáo -->
+			<TextObject Left="0" Top="38" Width="718" Height="22"
 						Text="[ReportTitle]"
 						HorzAlign="Center"
-						VertAlign="Center"
-						Font="Segoe UI, 16pt, style=Bold"/>
-			<TextObject Left="0" Top="40" Width="718" Height="15"
-						Text="Ngày in: [Date]"
-						HorzAlign="Right"
-						Font="Segoe UI, 10pt"/>
-		</ReportTitleBand>
+						Font="Segoe UI, 14pt, style=Bold"/>
+		</PageHeaderBand>
 
-		<!-- Column header: chia đôi -->
-		<ColumnHeaderBand Name="ColumnHeader1" Height="25">
+		<!-- ================= COLUMN HEADER ================= -->
+		<ColumnHeaderBand Height="25">
 			<TextObject Left="0" Top="0" Width="359" Height="25"
 						Border.Lines="All"
 						Text="Tên dịch vụ"
 						HorzAlign="Center"
 						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
+
 			<TextObject Left="359" Top="0" Width="359" Height="25"
 						Border.Lines="All"
-						Text="Đơn giá"
+						Text="Đơn giá (VNĐ)"
 						HorzAlign="Center"
 						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
 		</ColumnHeaderBand>
 
-		<!-- DataBand: mỗi dòng dịch vụ, căn giữa -->
-		<DataBand Name="Data1" DataSource="Services" Height="25" CanGrow="true">
+		<!-- ================= DATA ================= -->
+		<DataBand DataSource="Services" Height="25" CanGrow="true">
 			<TextObject Left="0" Top="0" Width="359" Height="25"
 						Border.Lines="All"
 						Text="[Services.service_name]"
 						HorzAlign="Center"
 						VertAlign="Center"
 						Font="Segoe UI, 10pt"
-						WordWrap="true"
 						CanGrow="true"/>
+
 			<TextObject Left="359" Top="0" Width="359" Height="25"
 						Border.Lines="All"
 						Text="[Services.price]"
@@ -69,7 +84,26 @@
 						CanGrow="true"/>
 		</DataBand>
 
-		<!-- Footer -->
+		<!-- ================= SIGNATURE (KHÔNG SÁT CUỐI) ================= -->
+		<ReportSummaryBand Height="80">
+
+			<TextObject Left="418" Top="10" Width="300" Height="18"
+						Text="Ngày ..... tháng ..... năm ....."
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt"/>
+
+			<TextObject Left="418" Top="30" Width="300" Height="18"
+						Text="Người lập báo cáo"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt, style=Bold"/>
+
+			<TextObject Left="418" Top="55" Width="300" Height="18"
+						Text="(Ký và ghi rõ họ tên)"
+						HorzAlign="Center"
+						Font="Segoe UI, 9pt, style=Italic"/>
+		</ReportSummaryBand>
+
+		<!-- ================= FOOTER ================= -->
 		<PageFooterBand Height="20">
 			<TextObject Left="0" Top="0" Width="718" Height="20"
 						Text="Trang [Page#] / [TotalPages#]"

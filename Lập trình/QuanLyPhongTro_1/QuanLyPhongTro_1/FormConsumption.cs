@@ -44,6 +44,7 @@ namespace QuanLyPhongTro_1
                 cbRoomSearch.DisplayMember = "room_name";
                 cbRoomSearch.ValueMember = "id";
                 cbRoomSearch.DataSource = dt;
+
             }
         }
 

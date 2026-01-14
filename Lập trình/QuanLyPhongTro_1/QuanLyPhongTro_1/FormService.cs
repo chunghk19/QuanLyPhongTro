@@ -133,6 +133,9 @@ namespace QuanLyPhongTro_1
                     DataTable dt = new DataTable();
                     mySqlDataAdapter.Fill(dt);
                     dgvService.DataSource = dt;
+                    dgvService.Columns["id"].HeaderText = "Mã dịch vụ" ;
+                    dgvService.Columns["service_name"].HeaderText = "Tên dịch vụ";
+                    dgvService.Columns["price"].HeaderText = "Giá dịch vụ";
                 }
                 catch (Exception ex)
                 {

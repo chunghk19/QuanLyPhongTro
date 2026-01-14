@@ -13,82 +13,110 @@
 
 	<!-- ================= PAGE ================= -->
 	<ReportPage Name="Page1"
-				PaperWidth="210"
-				PaperHeight="297"
-				LeftMargin="15"
-				RightMargin="15"
-				TopMargin="15"
-				BottomMargin="15">
+	            PaperWidth="210"
+	            PaperHeight="297"
+	            LeftMargin="15"
+	            RightMargin="15"
+	            TopMargin="15"
+	            BottomMargin="15">
 
-		<!-- ================= TOP HEADER ================= -->
-		<PageHeaderBand Height="50">
-			<TextObject Left="0" Top="0" Width="718" Height="25"
-						Text="BÁO CÁO DANH SÁCH PHÒNG"
-						HorzAlign="Center"
-						Font="Segoe UI, 14pt, style=Bold"/>
-			<TextObject Left="0" Top="28" Width="718" Height="18"
-						Text="Ngày in: [Date]"
-						HorzAlign="Right"
-						Font="Segoe UI, 9pt"/>
+		<!-- ================= HEADER ================= -->
+		<PageHeaderBand Height="90">
+
+			<!-- Trái -->
+			<TextObject Left="0" Top="0" Width="350" Height="30"
+			            Text="HỆ THỐNG NHÀ TRỌ HACTECH"
+			            Font="Segoe UI, 12pt, style=Bold"/>
+
+			<!-- Phải -->
+			<TextObject Left="360" Top="0" Width="350" Height="40"
+			            Text="CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&#13;&#10;Độc lập - Tự do - Hạnh phúc"
+			            Font="Segoe UI, 11pt, style=Bold"
+			            HorzAlign="Center"/>
+
+			<!-- Tên báo cáo -->
+			<TextObject Left="0" Top="50" Width="710" Height="30"
+			            Text="BÁO CÁO DANH SÁCH PHÒNG"
+			            Font="Segoe UI, 15pt, style=Bold"
+			            HorzAlign="Center"/>
 		</PageHeaderBand>
 
 		<!-- ================= COLUMN HEADER ================= -->
-		<ColumnHeaderBand Name="ColumnHeader1" Height="25">
-			<TextObject Left="0" Top="0" Width="250" Height="25"
-						Border.Lines="All"
-						Text="Tên phòng"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
-			<TextObject Left="250" Top="0" Width="150" Height="25"
-						Border.Lines="All"
-						Text="Giá (VNĐ)"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
-			<TextObject Left="400" Top="0" Width="150" Height="25"
-						Border.Lines="All"
-						Text="Diện tích"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
-			<TextObject Left="550" Top="0" Width="168" Height="25"
-						Border.Lines="All"
-						Text="Trạng thái"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
+		<ColumnHeaderBand Height="30">
+			<TextObject Left="0" Top="0" Width="250" Height="30"
+			            Border.Lines="All"
+			            Text="Tên phòng"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="250" Top="0" Width="150" Height="30"
+			            Border.Lines="All"
+			            Text="Giá (VNĐ)"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="400" Top="0" Width="150" Height="30"
+			            Border.Lines="All"
+			            Text="Diện tích"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt, style=Bold"/>
+			<TextObject Left="550" Top="0" Width="160" Height="30"
+			            Border.Lines="All"
+			            Text="Trạng thái"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt, style=Bold"/>
 		</ColumnHeaderBand>
 
-		<!-- ================= DATA BAND ================= -->
-		<DataBand Name="Data1" Height="25" DataSource="Room">
-			<TextObject Left="0" Top="0" Width="250" Height="25"
-						Border.Lines="All"
-						Text="[Room.room_name]"
-						HorzAlign="Left"
-						Font="Segoe UI, 10pt"/>
-			<TextObject Left="250" Top="0" Width="150" Height="25"
-						Border.Lines="All"
-						Text="[Room.price]"
-						HorzAlign="Right"
-						Format="Number"
-						Format.UseLocale="true"
-						Font="Segoe UI, 10pt"/>
-			<TextObject Left="400" Top="0" Width="150" Height="25"
-						Border.Lines="All"
-						Text="[Room.area]"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt"/>
-			<TextObject Left="550" Top="0" Width="168" Height="25"
-						Border.Lines="All"
-						Text="[Room.status]"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt"/>
+		<!-- ================= DATA ================= -->
+		<DataBand Name="Data1" Height="28" DataSource="Room">
+			<TextObject Left="0" Top="0" Width="250" Height="28"
+			            Border.Lines="All"
+			            Text="[Room.room_name]"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt"/>
+			<TextObject Left="250" Top="0" Width="150" Height="28"
+			            Border.Lines="All"
+			            Text="[Room.price]"
+			            HorzAlign="Right"
+			            VertAlign="Center"
+			            Format="Number"
+			            Format.UseLocale="true"
+			            Font="Segoe UI, 10pt"/>
+			<TextObject Left="400" Top="0" Width="150" Height="28"
+			            Border.Lines="All"
+			            Text="[Room.area]"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt"/>
+			<TextObject Left="550" Top="0" Width="160" Height="28"
+			            Border.Lines="All"
+			            Text="[Room.status]"
+			            HorzAlign="Center"
+			            VertAlign="Center"
+			            Font="Segoe UI, 10pt"/>
 		</DataBand>
 
 		<!-- ================= FOOTER ================= -->
+		<!-- ================= REPORT SUMMARY (CHỮ KÝ) ================= -->
+		<ReportSummaryBand Height="80">
+
+			<TextObject Left="420" Top="10" Width="280" Height="40"
+						Text="Người lập báo cáo&#13;&#10;(Ký và ghi rõ họ tên)"
+						HorzAlign="Center"
+						Font="Segoe UI, 10pt"/>
+
+		</ReportSummaryBand>
+
+		<!-- ================= FOOTER (CHỈ CÒN SỐ TRANG) ================= -->
 		<PageFooterBand Height="20">
-			<TextObject Left="0" Top="0" Width="718" Height="20"
+			<TextObject Left="0" Top="0" Width="710" Height="20"
 						Text="Trang [Page#] / [TotalPages#]"
 						HorzAlign="Right"
 						Font="Segoe UI, 9pt"/>
 		</PageFooterBand>
+
 
 	</ReportPage>
 </Report>

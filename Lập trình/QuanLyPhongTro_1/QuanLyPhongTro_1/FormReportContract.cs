@@ -118,7 +118,7 @@ namespace QuanLyPhongTro_1
         {
             contractData = GetContractData();
             dgvContracts.DataSource = contractData;
-
+            if (contractData.Columns.Contains("contract_id")) dgvContracts.Columns["contract_id"].HeaderText = "Mã hợp đồng";
             if (contractData.Columns.Contains("full_name")) dgvContracts.Columns["full_name"].HeaderText = "Tên khách";
             if (contractData.Columns.Contains("phone")) dgvContracts.Columns["phone"].HeaderText = "SĐT";
             if (contractData.Columns.Contains("id_card")) dgvContracts.Columns["id_card"].HeaderText = "CCCD";
