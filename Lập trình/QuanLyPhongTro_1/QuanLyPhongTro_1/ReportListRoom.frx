@@ -79,9 +79,9 @@
 			<TextObject Left="250" Top="0" Width="150" Height="28"
 			            Border.Lines="All"
 			            Text="[Room.price]"
-			            HorzAlign="Right"
+			            HorzAlign="Center"
 			            VertAlign="Center"
-			            Format="Number"
+			            Format="Number" Format.DecimalDigits="0"
 			            Format.UseLocale="true"
 			            Font="Segoe UI, 10pt"/>
 			<TextObject Left="400" Top="0" Width="150" Height="28"

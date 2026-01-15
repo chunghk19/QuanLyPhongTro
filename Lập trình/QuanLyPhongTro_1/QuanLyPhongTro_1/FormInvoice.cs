@@ -433,15 +433,62 @@ namespace QuanLyPhongTro_1
 
             // Lấy dữ liệu hóa đơn từ DB
             string sql = @"
-                SELECT i.id, r.room_name, t.full_name AS tenant_name,
-                       i.month, i.year, i.room_price, i.electric_cost, i.water_cost,
-                       i.service_cost, i.other_cost, i.total_cost, i.paid_amount, i.status
-                FROM Invoice i
-                JOIN Contract c ON i.contract_id = c.id
-                JOIN Room r ON c.room_id = r.id
-                JOIN Contract_Tenant ct ON ct.contract_id = c.id AND ct.is_primary=1
-                JOIN Tenant t ON ct.tenant_id = t.id
-                WHERE i.id=@id";
+    SELECT 
+        i.id,
+        r.room_name,
+        t.full_name AS tenant_name,
+
+        i.month,
+        i.year,
+
+        -- SNAPSHOT TIỀN
+        i.room_price,
+        i.electric_cost,
+        i.water_cost,
+        i.service_cost,
+        i.other_cost,
+        i.total_cost,
+        i.paid_amount,
+        i.status,
+
+        -- ===== ĐƠN GIÁ =====
+        c.price AS room_unit_price,
+
+        u.electric_price_per_kwh,
+        u.water_price_per_m3,
+
+        -- ===== CHỈ SỐ =====
+        u.electric_old,
+        u.electric_new,
+        (u.electric_new - u.electric_old) AS electric_usage,
+
+        u.water_old,
+        u.water_new,
+        (u.water_new - u.water_old) AS water_usage,
+
+        -- ===== DỊCH VỤ + ĐƠN GIÁ =====
+        (
+            SELECT GROUP_CONCAT(
+                CONCAT(s.service_name, ' : ', FORMAT(s.price, 0), ' đ')
+                SEPARATOR '\n'
+            )
+            FROM Room_Service rs
+            JOIN Service s ON rs.service_id = s.id
+            WHERE rs.room_id = r.id AND s.is_active = 1
+        ) AS service_detail
+
+    FROM Invoice i
+    JOIN Contract c ON i.contract_id = c.id
+    JOIN Room r ON c.room_id = r.id
+    JOIN Contract_Tenant ct 
+         ON ct.contract_id = c.id AND ct.is_primary = 1
+    JOIN Tenant t ON ct.tenant_id = t.id
+    LEFT JOIN consumption u 
+         ON u.room_id = r.id 
+        AND u.month = i.month 
+        AND u.year = i.year
+    WHERE i.id = @id;
+    ";
 
             using (var conn = DbHelper.GetConnection())
             using (var cmd = new MySqlCommand(sql, conn))

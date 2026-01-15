@@ -8,31 +8,40 @@
 			<Column Name="tenant_name" DataType="System.String"/>
 			<Column Name="month" DataType="System.Int32"/>
 			<Column Name="year" DataType="System.Int32"/>
+
 			<Column Name="room_price" DataType="System.Decimal"/>
 			<Column Name="electric_cost" DataType="System.Decimal"/>
 			<Column Name="water_cost" DataType="System.Decimal"/>
 			<Column Name="service_cost" DataType="System.Decimal"/>
 			<Column Name="other_cost" DataType="System.Decimal"/>
 			<Column Name="total_cost" DataType="System.Decimal"/>
-			<Column Name="status" DataType="System.String"/>
+
+			<Column Name="room_unit_price" DataType="System.Decimal"/>
+			<Column Name="electric_price_per_kwh" DataType="System.Decimal"/>
+			<Column Name="water_price_per_m3" DataType="System.Decimal"/>
+
+			<Column Name="electric_old" DataType="System.Int32"/>
+			<Column Name="electric_new" DataType="System.Int32"/>
+			<Column Name="electric_usage" DataType="System.Int32"/>
+
+			<Column Name="water_old" DataType="System.Int32"/>
+			<Column Name="water_new" DataType="System.Int32"/>
+			<Column Name="water_usage" DataType="System.Int32"/>
+
+			<Column Name="service_detail" DataType="System.String"/>
 		</TableDataSource>
 	</Dictionary>
 
 	<!-- ================= PAGE ================= -->
-	<ReportPage Name="Page1"
-				PaperWidth="210"
-				PaperHeight="297"
-				LeftMargin="15"
-				RightMargin="15"
-				TopMargin="15"
-				BottomMargin="15">
+	<ReportPage Name="Page1" PaperWidth="210" PaperHeight="297"
+				LeftMargin="15" RightMargin="15"
+				TopMargin="15" BottomMargin="15">
 
-		<!-- ================= HEADER ================= -->
+		<!-- HEADER -->
 		<PageHeaderBand Height="90">
-
 			<TextObject Left="0" Top="0" Width="350" Height="30"
 						Text="HỆ THỐNG NHÀ TRỌ HACTECH"
-						Font="Segoe UI, 12pt, style=Bold"/>
+						Font="Segoe UI, 13pt, style=Bold"/>
 
 			<TextObject Left="360" Top="0" Width="350" Height="40"
 						Text="CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM&#13;&#10;Độc lập - Tự do - Hạnh phúc"
@@ -45,99 +54,118 @@
 						Font="Segoe UI, 16pt, style=Bold"/>
 		</PageHeaderBand>
 
-		<!-- ================= INFO ================= -->
-		<ReportTitleBand Height="70">
-			<TextObject Left="0" Top="0" Width="350" Height="20"
+		<!-- BODY -->
+		<DataBand DataSource="Invoice">
+
+			<!-- INFO -->
+			<TextObject Left="20" Top="10" Width="670" Height="24"
 						Text="Phòng: [Invoice.room_name]"
-						Font="Segoe UI, 10pt, style=Bold"/>
+						Font="Segoe UI, 12pt, style=Bold"/>
 
-			<TextObject Left="0" Top="22" Width="350" Height="20"
+			<TextObject Left="20" Top="40" Width="670" Height="24"
 						Text="Người thuê: [Invoice.tenant_name]"
-						Font="Segoe UI, 10pt"/>
+						Font="Segoe UI, 12pt"/>
 
-			<TextObject Left="400" Top="0" Width="300" Height="20"
+			<TextObject Left="20" Top="70" Width="670" Height="24"
 						Text="Tháng: [Invoice.month]/[Invoice.year]"
-						HorzAlign="Right"
+						Font="Segoe UI, 12pt"/>
+
+			<!-- ================= TABLE ================= -->
+			<TableObject Left="20" Top="110" Width="670">
+				<TableColumn Width="470"/>
+				<TableColumn Width="200"/>
+
+				<!-- HEADER -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All" HorzAlign="Center" VertAlign="Center"
+							   Font="Segoe UI, 12pt, style=Bold"
+							   Text="Nội dung"/>
+					<TableCell Border.Lines="All" HorzAlign="Center" VertAlign="Center"
+							   Font="Segoe UI, 12pt, style=Bold"
+							   Text="Số tiền (VNĐ)"/>
+				</TableRow>
+
+				<!-- ROOM -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All" CanGrow="true"
+							   Text="Tiền phòng&#13;&#10;Đơn giá: [Invoice.room_unit_price] đ"
+							   Font="Segoe UI, 11pt"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Text="[Invoice.room_price]"
+							   Font="Segoe UI, 11pt" Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+				<!-- ELECTRIC -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All" CanGrow="true"
+							   Text="Tiền điện&#13;&#10;Chỉ số: [Invoice.electric_old] → [Invoice.electric_new]&#13;&#10;Tiêu thụ: [Invoice.electric_usage] kWh × [Invoice.electric_price_per_kwh]"
+							   Font="Segoe UI, 11pt"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Text="[Invoice.electric_cost]"
+							   Font="Segoe UI, 11pt" Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+				<!-- WATER -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All" CanGrow="true"
+							   Text="Tiền nước&#13;&#10;Chỉ số: [Invoice.water_old] → [Invoice.water_new]&#13;&#10;Tiêu thụ: [Invoice.water_usage] m³ × [Invoice.water_price_per_m3]"
+							   Font="Segoe UI, 11pt"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Text="[Invoice.water_cost]" 
+							   Font="Segoe UI, 11pt" Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+				<!-- SERVICE -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All" CanGrow="true"
+							   Text="Dịch vụ&#13;&#10;[Invoice.service_detail]"
+							   Font="Segoe UI, 11pt"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Text="[Invoice.service_cost]"
+							   Font="Segoe UI, 11pt" Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+				<!-- OTHER -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All"
+							   Text="Chi phí khác"
+							   Font="Segoe UI, 11pt"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Text="[Invoice.other_cost]"
+							   Font="Segoe UI, 11pt" Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+				<!-- TOTAL -->
+				<TableRow AutoSize="true">
+					<TableCell Border.Lines="All"
+							   Font="Segoe UI, 13pt, style=Bold"
+							   Text="TỔNG CỘNG"/>
+					<TableCell Border.Lines="All" WordWrap="false"
+							   HorzAlign="Right" VertAlign="Center"
+							   Font="Segoe UI, 13pt, style=Bold"
+							   Text="[Invoice.total_cost]"
+							   Format="Number" Format.DecimalDigits="0"/>
+				</TableRow>
+
+			</TableObject>
+
+			<!-- SIGN -->
+			<TextObject Left="420" Top="150" Width="280" Height="18"
+						Text="Ngày ..... tháng ..... năm ....."
+						HorzAlign="Center"
 						Font="Segoe UI, 10pt"/>
 
-			<TextObject Left="400" Top="22" Width="300" Height="20"
-						Text="Trạng thái: [Invoice.status]"
-						HorzAlign="Right"
-						Font="Segoe UI, 10pt, style=Bold"/>
-		</ReportTitleBand>
-
-		<!-- ================= TABLE ================= -->
-		<DataBand Height="210" DataSource="Invoice">
-
-			<TextObject Left="0" Top="0" Width="450" Height="25"
-						Border.Lines="All"
-						Text="Nội dung"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
-
-			<TextObject Left="450" Top="0" Width="260" Height="25"
-						Border.Lines="All"
-						Text="Số tiền (VNĐ)"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt, style=Bold"/>
-
-			<TextObject Left="0" Top="25" Width="450" Height="25" Border.Lines="All" Text="Tiền phòng"/>
-			<TextObject Left="450" Top="25" Width="260" Height="25" Border.Lines="All"
-						Text="[Invoice.room_price]" HorzAlign="Right"
-						Format="Number" Format.UseLocale="true"/>
-
-			<TextObject Left="0" Top="50" Width="450" Height="25" Border.Lines="All" Text="Tiền điện"/>
-			<TextObject Left="450" Top="50" Width="260" Height="25" Border.Lines="All"
-						Text="[Invoice.electric_cost]" HorzAlign="Right"
-						Format="Number" Format.UseLocale="true"/>
-
-			<TextObject Left="0" Top="75" Width="450" Height="25" Border.Lines="All" Text="Tiền nước"/>
-			<TextObject Left="450" Top="75" Width="260" Height="25" Border.Lines="All"
-						Text="[Invoice.water_cost]" HorzAlign="Right"
-						Format="Number" Format.UseLocale="true"/>
-
-			<TextObject Left="0" Top="100" Width="450" Height="25" Border.Lines="All" Text="Dịch vụ"/>
-			<TextObject Left="450" Top="100" Width="260" Height="25" Border.Lines="All"
-						Text="[Invoice.service_cost]" HorzAlign="Right"
-						Format="Number" Format.UseLocale="true"/>
-
-			<TextObject Left="0" Top="125" Width="450" Height="25" Border.Lines="All" Text="Chi phí khác"/>
-			<TextObject Left="450" Top="125" Width="260" Height="25" Border.Lines="All"
-						Text="[Invoice.other_cost]" HorzAlign="Right"
-						Format="Number" Format.UseLocale="true"/>
-
-			<TextObject Left="0" Top="155" Width="450" Height="35" Border.Lines="All"
-						Text="TỔNG TIỀN"
-						Font="Segoe UI, 11pt, style=Bold"/>
-
-			<TextObject Left="450" Top="155" Width="260" Height="35" Border.Lines="All"
-						Text="[Invoice.total_cost]"
-						HorzAlign="Right"
-						Font="Segoe UI, 11pt, style=Bold"
-						Format="Number" Format.UseLocale="true"/>
-		</DataBand>
-
-		<!-- ================= SIGNATURE ================= -->
-		<ReportSummaryBand Height="100">
-
-			<TextObject Left="0" Top="10" Width="300" Height="60"
+			<TextObject Left="420" Top="170" Width="280" Height="45"
 						Text="Người lập hóa đơn&#13;&#10;(Ký và ghi rõ họ tên)"
 						HorzAlign="Center"
 						Font="Segoe UI, 10pt"/>
 
-			<TextObject Left="410" Top="10" Width="300" Height="60"
-						Text="Khách hàng&#13;&#10;(Ký và ghi rõ họ tên)"
-						HorzAlign="Center"
-						Font="Segoe UI, 10pt"/>
-		</ReportSummaryBand>
-
-		<!-- ================= FOOTER ================= -->
-		<PageFooterBand Height="20">
-			<TextObject Left="0" Top="0" Width="710" Height="20"
-						Text="Trang [Page#] / [TotalPages#]"
-						HorzAlign="Right"
-						Font="Segoe UI, 9pt"/>
-		</PageFooterBand>
+		</DataBand>
 
 	</ReportPage>
 </Report>

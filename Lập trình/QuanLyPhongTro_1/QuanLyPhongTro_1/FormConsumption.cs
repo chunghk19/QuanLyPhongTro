@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using QuanLyPhongTro_1.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace QuanLyPhongTro_1
 {
@@ -19,8 +20,15 @@ namespace QuanLyPhongTro_1
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Normal;
+
+            numMonth.Minimum = 1;
+            numMonth.Maximum = 12;
+
+            numYear.Minimum = 2000;
+            numYear.Maximum = 2100;
         }
 
+        // ================= LOAD ROOM =================
         private void LoadRooms(string keyword = "")
         {
             cbRoomSearch.DataSource = null;
@@ -44,7 +52,6 @@ namespace QuanLyPhongTro_1
                 cbRoomSearch.DisplayMember = "room_name";
                 cbRoomSearch.ValueMember = "id";
                 cbRoomSearch.DataSource = dt;
-
             }
         }
 
@@ -53,13 +60,36 @@ namespace QuanLyPhongTro_1
             LoadRooms(txtRoomSearch.Text.Trim());
         }
 
+        // ================= CONTRACT =================
+        private DateTime? GetContractStartDate(int roomId)
+        {
+            string sql = @"
+                SELECT start_date
+                FROM contract
+                WHERE room_id = @roomId
+                AND status = 'Đang hiệu lực'
+                ORDER BY start_date DESC
+                LIMIT 1
+            ";
+
+            using (MySqlConnection conn = DbHelper.GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@roomId", roomId);
+                conn.Open();
+                object rs = cmd.ExecuteScalar();
+                return rs != null ? Convert.ToDateTime(rs) : (DateTime?)null;
+            }
+        }
+
+        // ================= CONSUMPTION =================
         private DataRow GetLastConsumption(int roomId)
         {
             string sql = @"
                 SELECT *
                 FROM consumption
                 WHERE room_id = @roomId
-                ORDER BY created_at DESC
+                ORDER BY year DESC, month DESC
                 LIMIT 1
             ";
 
@@ -73,34 +103,6 @@ namespace QuanLyPhongTro_1
 
                 return dt.Rows.Count > 0 ? dt.Rows[0] : null;
             }
-        }
-
-        private void cbRoomSearch_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbRoomSearch.SelectedValue == null) return;
-            if (!int.TryParse(cbRoomSearch.SelectedValue.ToString(), out int roomId)) return;
-
-            DataRow last = GetLastConsumption(roomId);
-
-            if (last != null)
-            {
-                txtElectricOld.Text = last["electric_new"].ToString();
-                txtWaterOld.Text = last["water_new"].ToString();
-                txtElectricOld.ReadOnly = true;
-                txtWaterOld.ReadOnly = true;
-            }
-            else
-            {
-                txtElectricOld.Text = "0";
-                txtWaterOld.Text = "0";
-                txtElectricOld.ReadOnly = false;
-                txtWaterOld.ReadOnly = false;
-            }
-
-            txtElectricNew.Text = "";
-            txtWaterNew.Text = "";
-            txtElectricCost.Text = "0";
-            txtWaterCost.Text = "0";
         }
 
         private bool IsConsumptionExists(int roomId, int month, int year)
@@ -125,6 +127,55 @@ namespace QuanLyPhongTro_1
             }
         }
 
+        // ================= ROOM CHANGE =================
+        private void cbRoomSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbRoomSearch.SelectedValue == null) return;
+            if (!int.TryParse(cbRoomSearch.SelectedValue.ToString(), out int roomId)) return;
+
+            DateTime? contractStart = GetContractStartDate(roomId);
+            if (contractStart == null)
+            {
+                MessageBox.Show("Phòng này chưa có hợp đồng hiệu lực");
+                return;
+            }
+
+            DataRow last = GetLastConsumption(roomId);
+
+            if (last != null)
+            {
+                // ===== Đã từng chốt =====
+                txtElectricOld.Text = last["electric_new"].ToString();
+                txtWaterOld.Text = last["water_new"].ToString();
+                txtElectricOld.ReadOnly = true;
+                txtWaterOld.ReadOnly = true;
+
+                int lastMonth = Convert.ToInt32(last["month"]);
+                int lastYear = Convert.ToInt32(last["year"]);
+                DateTime next = new DateTime(lastYear, lastMonth, 1).AddMonths(1);
+
+                numMonth.Value = next.Month;
+                numYear.Value = next.Year;
+            }
+            else
+            {
+                // ===== Hợp đồng mới =====
+                txtElectricOld.Text = "0";
+                txtWaterOld.Text = "0";
+                txtElectricOld.ReadOnly = false;
+                txtWaterOld.ReadOnly = false;
+
+                numMonth.Value = contractStart.Value.Month;
+                numYear.Value = contractStart.Value.Year;
+            }
+
+            txtElectricNew.Text = "";
+            txtWaterNew.Text = "";
+            txtElectricCost.Text = "0";
+            txtWaterCost.Text = "0";
+        }
+
+        // ================= SAVE =================
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cbRoomSearch.SelectedValue == null)
@@ -133,101 +184,84 @@ namespace QuanLyPhongTro_1
                 return;
             }
 
-            // ===== Validate trống =====
-            if (string.IsNullOrWhiteSpace(txtElectricNew.Text) || string.IsNullOrWhiteSpace(txtWaterNew.Text))
+            int roomId = Convert.ToInt32(cbRoomSearch.SelectedValue);
+            int month = (int)numMonth.Value;
+            int year = (int)numYear.Value;
+
+            DateTime? contractStart = GetContractStartDate(roomId);
+            if (contractStart == null)
             {
-                MessageBox.Show("Vui lòng nhập số điện và số nước mới");
+                MessageBox.Show("Phòng chưa có hợp đồng hiệu lực");
                 return;
             }
 
-            // ===== Validate kiểu số =====
-            if (!int.TryParse(txtElectricNew.Text, out int electricNew))
+            // ===== Không trước tháng hợp đồng =====
+            DateTime selected = new DateTime(year, month, 1);
+            DateTime contractMonth = new DateTime(contractStart.Value.Year, contractStart.Value.Month, 1);
+            if (selected < contractMonth)
             {
-                MessageBox.Show("Chỉ số điện mới phải là số nguyên hợp lệ");
+                MessageBox.Show("Không được lập trước tháng bắt đầu hợp đồng");
                 return;
             }
 
-            if (!int.TryParse(txtWaterNew.Text, out int waterNew))
+            DataRow last = GetLastConsumption(roomId);
+            if (last != null)
             {
-                MessageBox.Show("Chỉ số nước mới phải là số nguyên hợp lệ");
+                DateTime lastMonth = new DateTime(
+                    Convert.ToInt32(last["year"]),
+                    Convert.ToInt32(last["month"]),
+                    1
+                );
+
+                if (selected <= lastMonth)
+                {
+                    MessageBox.Show("Phải lập tháng sau lần chốt gần nhất");
+                    return;
+                }
+            }
+
+            if (IsConsumptionExists(roomId, month, year))
+            {
+                MessageBox.Show($"Phòng đã chốt điện nước tháng {month}/{year}");
                 return;
             }
 
-            if (!int.TryParse(txtElectricOld.Text, out int electricOld))
+            // ===== Validate số =====
+            if (!int.TryParse(txtElectricNew.Text, out int electricNew) ||
+                !int.TryParse(txtWaterNew.Text, out int waterNew) ||
+                !int.TryParse(txtElectricOld.Text, out int electricOld) ||
+                !int.TryParse(txtWaterOld.Text, out int waterOld))
             {
-                MessageBox.Show("Chỉ số điện cũ không hợp lệ");
+                MessageBox.Show("Chỉ số điện nước không hợp lệ");
                 return;
             }
 
-            if (!int.TryParse(txtWaterOld.Text, out int waterOld))
-            {
-                MessageBox.Show("Chỉ số nước cũ không hợp lệ");
-                return;
-            }
-
-            // ===== Validate số âm =====
-            if (electricNew < 0 || waterNew < 0)
-            {
-                MessageBox.Show("Chỉ số điện và nước không được âm");
-                return;
-            }
-
-            if (electricOld < 0 || waterOld < 0)
-            {
-                MessageBox.Show("Chỉ số cũ không hợp lệ");
-                return;
-            }
-
-            // ===== Validate lớn hơn cũ =====
             if (electricNew < electricOld || waterNew < waterOld)
             {
                 MessageBox.Show("Chỉ số mới không được nhỏ hơn chỉ số cũ");
                 return;
             }
 
-            // ===== Validate ngày =====
-            DateTime selectedDate = dpStartDay.Value.Date;
-            DataRow last = GetLastConsumption(Convert.ToInt32(cbRoomSearch.SelectedValue));
-            if (last != null)
-            {
-                DateTime lastDate = Convert.ToDateTime(last["created_at"]);
-                if (selectedDate <= lastDate)
-                {
-                    MessageBox.Show("Ngày chốt phải lớn hơn lần chốt gần nhất");
-                    return;
-                }
-            }
-
-            int month = selectedDate.Month;
-            int year = selectedDate.Year;
-
-            // ===== Validate đã chốt tháng =====
-            if (IsConsumptionExists(Convert.ToInt32(cbRoomSearch.SelectedValue), month, year))
-            {
-                MessageBox.Show($"Phòng này đã chốt điện nước tháng {month}/{year}");
-                return;
-            }
-
-            // ===== Thực hiện lưu =====
+            // ===== INSERT =====
             string sql = @"
-        INSERT INTO consumption (
-            room_id, month, year,
-            electric_old, electric_new, electric_price_per_kwh,
-            water_old, water_new, water_price_per_m3,
-            created_at
-        )
-        VALUES (
-            @roomId, @month, @year,
-            @eOld, @eNew, @ePrice,
-            @wOld, @wNew, @wPrice,
-            @createdAt
-        )
-    ";
+                INSERT INTO consumption (
+                    room_id, month, year,
+                    electric_old, electric_new, electric_price_per_kwh,
+                    water_old, water_new, water_price_per_m3,
+                    created_at
+                )
+                VALUES (
+                    @roomId, @month, @year,
+                    @eOld, @eNew, @ePrice,
+                    @wOld, @wNew, @wPrice,
+                    @createdAt
+                )
+            ";
 
             using (MySqlConnection conn = DbHelper.GetConnection())
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@roomId", Convert.ToInt32(cbRoomSearch.SelectedValue));
+                cmd.Parameters.AddWithValue("@roomId", roomId);
                 cmd.Parameters.AddWithValue("@month", month);
                 cmd.Parameters.AddWithValue("@year", year);
 
@@ -246,11 +280,6 @@ namespace QuanLyPhongTro_1
             }
 
             MessageBox.Show("Lưu chỉ số điện nước thành công!");
-
-            txtElectricNew.Text = "";
-            txtWaterNew.Text = "";
-            txtElectricCost.Text = "0";
-            txtWaterCost.Text = "0";
         }
 
 

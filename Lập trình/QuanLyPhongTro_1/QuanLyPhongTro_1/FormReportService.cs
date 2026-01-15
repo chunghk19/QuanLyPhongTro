@@ -158,10 +158,17 @@ namespace QuanLyPhongTro_1
                 report.RegisterData(serviceData, "Services");
                 report.GetDataSource("Services").Enabled = true;
 
-                // Truyền tên phòng vào parameter
-                report.SetParameterValue("RoomName", cbRoom.SelectedIndex == 0 ? "" : ((dynamic)cbRoom.SelectedItem).Name);
+            // Truyền tên phòng vào parameter
+            string roomName = cbRoom.SelectedIndex == 0
+                ? "TẤT CẢ PHÒNG"
+                : ((dynamic)cbRoom.SelectedItem).Name;
 
-                report.Prepare();
+            report.SetParameterValue(
+                "ReportTitle",
+                $"DANH SÁCH DỊCH VỤ - {roomName.ToUpper()}"
+            );
+
+            report.Prepare();
 
                 using (FileStream fs = new FileStream(sfd.FileName, FileMode.Create))
                 {

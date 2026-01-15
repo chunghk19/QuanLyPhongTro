@@ -21,28 +21,31 @@
 				BottomMargin="15">
 
 		<!-- ================= HEADER ================= -->
-		<PageHeaderBand Height="60">
+		<PageHeaderBand Height="95">
 
 			<!-- Trái -->
 			<TextObject Left="0" Top="0" Width="350" Height="20"
 						Text="Hệ thống nhà trọ Hactech"
 						Font="Segoe UI, 10pt, style=Bold"/>
 
-			<!-- Phải -->
-			<TextObject Left="368" Top="0" Width="350" Height="18"
+			<!-- Phải - TIÊU NGỮ (đã căn lại cho đúng) -->
+			<TextObject Left="368" Top="2" Width="350" Height="20"
 						Text="Cộng hòa xã hội chủ nghĩa Việt Nam"
-						HorzAlign="Right"
-						Font="Segoe UI, 9pt, style=Bold"/>
+						HorzAlign="Center"
+						VertAlign="Center"
+						Font="Segoe UI, 9.5pt, style=Bold"/>
 
-			<TextObject Left="368" Top="18" Width="350" Height="18"
+			<TextObject Left="368" Top="26" Width="350" Height="18"
 						Text="Độc lập - Tự do - Hạnh phúc"
-						HorzAlign="Right"
+						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 9pt"/>
 
 			<!-- Tên báo cáo -->
-			<TextObject Left="0" Top="38" Width="718" Height="22"
+			<TextObject Left="0" Top="55" Width="718" Height="28"
 						Text="[ReportTitle]"
 						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 14pt, style=Bold"/>
 		</PageHeaderBand>
 
@@ -79,14 +82,13 @@
 						HorzAlign="Center"
 						VertAlign="Center"
 						Font="Segoe UI, 10pt"
-						Format="Number"
+						Format="Number" Format.DecimalDigits="0"
 						Format.UseLocale="true"
 						CanGrow="true"/>
 		</DataBand>
 
-		<!-- ================= SIGNATURE (KHÔNG SÁT CUỐI) ================= -->
+		<!-- ================= SIGNATURE ================= -->
 		<ReportSummaryBand Height="80">
-
 			<TextObject Left="418" Top="10" Width="300" Height="18"
 						Text="Ngày ..... tháng ..... năm ....."
 						HorzAlign="Center"

@@ -57,24 +57,28 @@
 						Border.Lines="All"
 						Text="SĐT"
 						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
 
 			<TextObject Left="240" Top="0" Width="100" Height="25"
 						Border.Lines="All"
 						Text="CCCD"
 						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
 
 			<TextObject Left="340" Top="0" Width="180" Height="25"
 						Border.Lines="All"
 						Text="Địa chỉ"
 						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
 
 			<TextObject Left="520" Top="0" Width="198" Height="25"
 						Border.Lines="All"
 						Text="Phòng thuê"
 						HorzAlign="Center"
+						VertAlign="Center"
 						Font="Segoe UI, 10pt, style=Bold"/>
 
 		</ColumnHeaderBand>
@@ -86,22 +90,26 @@
 						Border.Lines="All"
 						Text="[TenantRoom.full_name]"
 						Font="Segoe UI, 10pt"
+						HorzAlign="Center"
 						WordWrap="true"
 						CanGrow="true"/>
 
 			<TextObject Left="150" Top="0" Width="90" Height="25"
 						Border.Lines="All"
 						Text="[TenantRoom.phone]"
+						HorzAlign="Center" vertAlign="Center"
 						Font="Segoe UI, 10pt"/>
 
 			<TextObject Left="240" Top="0" Width="100" Height="25"
 						Border.Lines="All"
 						Text="[TenantRoom.id_card]"
+						HorzAlign="Center" vertAlign="Center"
 						Font="Segoe UI, 10pt"/>
 
 			<TextObject Left="340" Top="0" Width="180" Height="25"
 						Border.Lines="All"
 						Text="[TenantRoom.address]"
+						HorzAlign="Center" vertAlign="Center"
 						Font="Segoe UI, 10pt"
 						WordWrap="true"
 						CanGrow="true"/>
