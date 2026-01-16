@@ -23,7 +23,10 @@ namespace QuanLyPhongTro_1
             dash.Show();
             MessageBox.Show("Xin chào " + Authorization1.Username + " (" + Authorization1.Role + ")");
             ApplyRolePermission();
-
+            FormPayment formPayment = new FormPayment();
+            formPayment.Hide();
+            đổiMậtKhẩuToolStripMenuItem.Visible = false;
+            thanhToánToolStripMenuItem.Visible = false;
         }
 
         private void ApplyRolePermission()
@@ -226,9 +229,9 @@ namespace QuanLyPhongTro_1
 
         private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormPayment fr = new FormPayment();
-            fr.MdiParent = this;
-            fr.Show();
+            //FormPayment fr = new FormPayment();
+            //fr.MdiParent = this;
+            //fr.Show();
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)

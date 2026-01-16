@@ -142,9 +142,9 @@ namespace QuanLyPhongTro_1
                 AutoScroll = true, // scroll ngang nếu cần
                 Dock = DockStyle.Fill
             };
-            buttonPanel.Controls.Add(btnAdd);
+            //buttonPanel.Controls.Add(btnAdd);
             buttonPanel.Controls.Add(btnUpdate);
-            buttonPanel.Controls.Add(btnDelete);
+            //buttonPanel.Controls.Add(btnDelete);
             formLayout.Controls.Add(buttonPanel, 1, 5);
             formLayout.SetColumnSpan(buttonPanel, 3);
 

@@ -21,6 +21,7 @@ namespace QuanLyPhongTro_1
         public FormLogin()
         {
             InitializeComponent();
+            this.ControlBox = false;
         }
         public static bool VerifyPassword(string password, string storedHash)
         {
@@ -88,7 +89,7 @@ namespace QuanLyPhongTro_1
                 FormLogin login = new FormLogin();
                 login.Show();
 
-                this.Close(); // đóng MDI
+                Application.Exit(); // đóng MDI
             }
         }
     }
